@@ -229,8 +229,10 @@
             gap: 10px;
         }
         
-        .logo-icon {
-            color: var(--color-secondary);
+        .logo-img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
         }
         
         .nav {
@@ -333,7 +335,7 @@
         }
         
         .hero-bg {
-            background-image: url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-image: url('images/vhod_grup.png');
             transform: translateZ(-1px) scale(1.2);
         }
         
@@ -442,7 +444,7 @@
         }
         
         .advantages-bg {
-            background-image: url('https://images.unsplash.com/photo-1598928506311-c55ded91a20c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-image: url('images/advantages-bg.jpg');
             opacity: 0.03;
         }
         
@@ -528,7 +530,7 @@
         }
         
         .catalog-bg {
-            background-image: url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-image: url('images/catalog-bg.jpg');
             opacity: 0.03;
         }
         
@@ -647,7 +649,7 @@
         }
         
         .contacts-bg {
-            background-image: url('https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-image: url('images/contacts-bg.jpg');
             opacity: 0.03;
         }
         
@@ -799,7 +801,7 @@
         }
         
         .feedback-bg {
-            background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-image: url('images/feedback-bg.jpg');
             opacity: 0.03;
         }
         
@@ -921,7 +923,7 @@
         }
         
         .footer-bg {
-            background-image: url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-image: url('images/footer-bg.jpg');
             opacity: 0.05;
         }
         
@@ -1381,6 +1383,27 @@
             z-index: 1001;
             transition: width 0.1s ease;
         }
+        
+        /* Запасные изображения для фона, если пользовательские не загружены */
+        .advantages-bg {
+            background-image: linear-gradient(135deg, #f9f7f4 0%, #f0ede8 100%);
+        }
+        
+        .catalog-bg {
+            background-image: linear-gradient(135deg, #ffffff 0%, #f9f7f4 100%);
+        }
+        
+        .contacts-bg {
+            background-image: linear-gradient(135deg, #f9f7f4 0%, #f0ede8 100%);
+        }
+        
+        .feedback-bg {
+            background-image: linear-gradient(135deg, #ffffff 0%, #f9f7f4 100%);
+        }
+        
+        .footer-bg {
+            background-image: linear-gradient(135deg, #1a3c2a 0%, #2a5c3d 100%);
+        }
     </style>
 </head>
 <body>
@@ -1392,8 +1415,8 @@
         <div class="container">
             <div class="header-content">
                 <a href="#" class="logo">
-                    <i class="fas fa-couch logo-icon"></i>
-                    Гранд Мебель
+                    <img src="images/logo.png" alt="Гранд Мебель" class="logo-img">
+                    <span>Гранд Мебель</span>
                 </a>
                 <nav class="nav">
                     <ul class="nav-list">
@@ -1475,7 +1498,7 @@
             <h2 class="section-title">Категории мебели</h2>
             <div class="catalog-grid">
                 <div class="catalog-card">
-                    <div class="catalog-card-image" style="background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="catalog-card-image" style="background-image: url('images/living-room.jpg');"></div>
                     <div class="catalog-card-overlay"></div>
                     <div class="catalog-card-content">
                         <h3 class="catalog-card-title">Гостиные</h3>
@@ -1486,7 +1509,7 @@
                     </div>
                 </div>
                 <div class="catalog-card">
-                    <div class="catalog-card-image" style="background-image: url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="catalog-card-image" style="background-image: url('images/bedroom.jpg');"></div>
                     <div class="catalog-card-overlay"></div>
                     <div class="catalog-card-content">
                         <h3 class="catalog-card-title">Спальни</h3>
@@ -1497,7 +1520,7 @@
                     </div>
                 </div>
                 <div class="catalog-card">
-                    <div class="catalog-card-image" style="background-image: url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="catalog-card-image" style="background-image: url('images/kitchen.jpg');"></div>
                     <div class="catalog-card-overlay"></div>
                     <div class="catalog-card-content">
                         <h3 class="catalog-card-title">Кухни</h3>
@@ -1508,7 +1531,7 @@
                     </div>
                 </div>
                 <div class="catalog-card">
-                    <div class="catalog-card-image" style="background-image: url('https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="catalog-card-image" style="background-image: url('images/office.jpg');"></div>
                     <div class="catalog-card-overlay"></div>
                     <div class="catalog-card-content">
                         <h3 class="catalog-card-title">Офис</h3>
@@ -1519,7 +1542,7 @@
                     </div>
                 </div>
                 <div class="catalog-card">
-                    <div class="catalog-card-image" style="background-image: url('https://images.unsplash.com/photo-1564078516393-cf04bd966897?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="catalog-card-image" style="background-image: url('images/kids-room.jpg');"></div>
                     <div class="catalog-card-overlay"></div>
                     <div class="catalog-card-content">
                         <h3 class="catalog-card-title">Детская</h3>
@@ -1530,7 +1553,7 @@
                     </div>
                 </div>
                 <div class="catalog-card">
-                    <div class="catalog-card-image" style="background-image: url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="catalog-card-image" style="background-image: url('images/sofa.jpg');"></div>
                     <div class="catalog-card-overlay"></div>
                     <div class="catalog-card-content">
                         <h3 class="catalog-card-title">Мягкая мебель</h3>
@@ -1628,7 +1651,9 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <a href="#" class="footer-logo">Гранд Мебель</a>
+                    <a href="#" class="footer-logo">
+                        <img src="images/logo.png" alt="Гранд Мебель" class="logo-img" style="height: 40px;">
+                    </a>
                     <p class="footer-about">Создаём уют в вашем доме с 2010 года. Широкий ассортимент мебели для дома, квартиры и офиса в Нягани.</p>
                     <div class="social-links">
                         <a href="#" class="social-link" aria-label="Instagram">
@@ -1799,75 +1824,102 @@
             // Активируем элементы при загрузке
             setTimeout(activateElementsOnScroll, 500);
             
-            // Данные для галереи
+            // Данные для галереи с пользовательскими изображениями
             const galleryData = {
                 'living-room': {
                     title: 'Гостиные',
                     images: [
-                        'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                        'images/living-room-1.jpg',
+                        'images/living-room-2.jpg',
+                        'images/living-room-3.jpg',
+                        'images/living-room-4.jpg',
+                        'images/living-room-5.jpg',
+                        'images/living-room-6.jpg'
                     ]
                 },
                 'bedroom': {
                     title: 'Спальни',
                     images: [
-                        'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1571508601891-ca5e7a713859?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1525915831070-bd5cdcd422d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1540518614846-7eded433c457?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                        'images/bedroom-1.jpg',
+                        'images/bedroom-2.jpg',
+                        'images/bedroom-3.jpg',
+                        'images/bedroom-4.jpg',
+                        'images/bedroom-5.jpg',
+                        'images/bedroom-6.jpg'
                     ]
                 },
                 'kitchen': {
                     title: 'Кухни',
                     images: [
-                        'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1484101403633-562f891dc89a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1565538810643-b5bdb714032a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1584799580661-53b7c6b99430?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1611270688594-db8b0f797d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1594223274512-ad4803739b7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                        'images/kitchen-1.jpg',
+                        'images/kitchen-2.jpg',
+                        'images/kitchen-3.jpg',
+                        'images/kitchen-4.jpg',
+                        'images/kitchen-5.jpg',
+                        'images/kitchen-6.jpg'
                     ]
                 },
                 'office': {
                     title: 'Офисная мебель',
                     images: [
-                        'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1581299329814-556ec7cc099e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1604328698692-f76ea9498e76?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                        'images/office-1.jpg',
+                        'images/office-2.jpg',
+                        'images/office-3.jpg',
+                        'images/office-4.jpg',
+                        'images/office-5.jpg',
+                        'images/office-6.jpg'
                     ]
                 },
                 'kids-room': {
                     title: 'Детские комнаты',
                     images: [
-                        'https://images.unsplash.com/photo-1564078516393-cf04bd966897?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1595576508898-0ad5c879a061?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1596496181871-9689e156ea6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1603969072881-b0fc7f3d77d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                        'images/kids-room-1.jpg',
+                        'images/kids-room-2.jpg',
+                        'images/kids-room-3.jpg',
+                        'images/kids-room-4.jpg',
+                        'images/kids-room-5.jpg',
+                        'images/kids-room-6.jpg'
                     ]
                 },
                 'sofa': {
                     title: 'Мягкая мебель',
                     images: [
-                        'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1540574163026-643ea20ade25?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1567016432779-094069958ea5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1592078615290-033ee584e267?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                        'images/sofa-1.jpg',
+                        'images/sofa-2.jpg',
+                        'images/sofa-3.jpg',
+                        'images/sofa-4.jpg',
+                        'images/sofa-5.jpg',
+                        'images/sofa-6.jpg'
                     ]
                 }
             };
+            
+            // Проверка наличия пользовательских изображений
+            function checkImageAvailability(url, callback) {
+                const img = new Image();
+                img.onload = function() {
+                    callback(true);
+                };
+                img.onerror = function() {
+                    callback(false);
+                };
+                img.src = url;
+            }
+            
+            // Использовать резервные изображения при отсутствии пользовательских
+            function getImageUrl(baseUrl, fallbackUrl) {
+                return new Promise((resolve) => {
+                    checkImageAvailability(baseUrl, (exists) => {
+                        if (exists) {
+                            resolve(baseUrl);
+                        } else {
+                            // Если изображение не найдено, используем резервное
+                            console.log(`Изображение ${baseUrl} не найдено, используем резервное`);
+                            resolve(fallbackUrl);
+                        }
+                    });
+                });
+            }
             
             // Открытие модального окна галереи
             const catalogButtons = document.querySelectorAll('.catalog-card-btn');
@@ -1886,10 +1938,31 @@
                         modalTitle.textContent = data.title;
                         galleryGrid.innerHTML = '';
                         
-                        data.images.forEach(imageUrl => {
+                        // Массив резервных изображений (Unsplash)
+                        const fallbackImages = [
+                            'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                            'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                            'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                            'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                            'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                            'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                        ];
+                        
+                        // Создаем элементы галереи с проверкой наличия изображений
+                        data.images.forEach((imageUrl, index) => {
                             const galleryItem = document.createElement('div');
                             galleryItem.className = 'gallery-item';
-                            galleryItem.style.backgroundImage = `url('${imageUrl}')`;
+                            
+                            // Проверяем наличие пользовательского изображения
+                            checkImageAvailability(imageUrl, (exists) => {
+                                if (exists) {
+                                    galleryItem.style.backgroundImage = `url('${imageUrl}')`;
+                                } else {
+                                    // Используем резервное изображение
+                                    const fallbackIndex = index % fallbackImages.length;
+                                    galleryItem.style.backgroundImage = `url('${fallbackImages[fallbackIndex]}')`;
+                                }
+                            });
                             
                             const overlay = document.createElement('div');
                             overlay.className = 'gallery-item-overlay';
@@ -2033,6 +2106,51 @@
                         });
                     }
                 });
+            });
+            
+            // Проверка наличия пользовательских изображений для категорий
+            const categoryImages = [
+                { element: document.querySelector('.catalog-card:nth-child(1) .catalog-card-image'), url: 'images/living-room.jpg', fallback: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+                { element: document.querySelector('.catalog-card:nth-child(2) .catalog-card-image'), url: 'images/bedroom.jpg', fallback: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+                { element: document.querySelector('.catalog-card:nth-child(3) .catalog-card-image'), url: 'images/kitchen.jpg', fallback: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+                { element: document.querySelector('.catalog-card:nth-child(4) .catalog-card-image'), url: 'images/office.jpg', fallback: 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+                { element: document.querySelector('.catalog-card:nth-child(5) .catalog-card-image'), url: 'images/kids-room.jpg', fallback: 'https://images.unsplash.com/photo-1564078516393-cf04bd966897?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+                { element: document.querySelector('.catalog-card:nth-child(6) .catalog-card-image'), url: 'images/sofa.jpg', fallback: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }
+            ];
+            
+            // Проверяем и устанавливаем изображения для категорий
+            categoryImages.forEach(category => {
+                if (category.element) {
+                    checkImageAvailability(category.url, (exists) => {
+                        if (exists) {
+                            category.element.style.backgroundImage = `url('${category.url}')`;
+                        } else {
+                            console.log(`Изображение категории ${category.url} не найдено, используем резервное`);
+                            category.element.style.backgroundImage = `url('${category.fallback}')`;
+                        }
+                    });
+                }
+            });
+            
+            // Проверка наличия главного баннера
+            const heroBg = document.querySelector('.hero-bg');
+            checkImageAvailability('images/vhod_grup.png', (exists) => {
+                if (!exists) {
+                    console.log('Основной баннер images/vhod_grup.png не найден, используем резервное изображение');
+                    heroBg.style.backgroundImage = `url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80')`;
+                }
+            });
+            
+            // Проверка наличия логотипа
+            const logoImg = document.querySelector('.logo-img');
+            checkImageAvailability('images/logo.png', (exists) => {
+                if (!exists) {
+                    console.log('Логотип images/logo.png не найден, используем текстовый логотип');
+                    // Скрываем изображение и показываем текстовый логотип
+                    if (logoImg) {
+                        logoImg.style.display = 'none';
+                    }
+                }
             });
             
             // Инициализация карты (заглушка)
