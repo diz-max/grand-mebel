@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гранд Мебель в Нягани | Мебель для дома и офиса</title>
+    <meta name="description" content="Широкий ассортимент мебели для дома, квартиры и офиса в Нягани. Бесплатная консультация, доставка и сборка.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛋️</text></svg>">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">Гранд Мебель</a>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="#hero">Главная</a></li>
+                        <li><a href="#catalog">Каталог</a></li>
+                        <li><a href="#contacts">Контакты</a></li>
+                    </ul>
+                    <div class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Герой-секция -->
+    <section id="hero" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Гранд Мебель — всё для вашего комфорта</h1>
+                <p class="hero-subtitle">Широкий ассортимент мебели для дома, квартиры и офиса в Нягани</p>
+                <a href="#catalog" class="btn btn-primary">Посмотреть каталог</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="advantages">
+        <div class="container">
+            <h2 class="section-title">Почему выбирают нас</h2>
+            <div class="advantages-grid">
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3 class="advantage-title">Бесплатная консультация</h3>
+                    <p class="advantage-text">Поможем подобрать мебель под ваш интерьер</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3 class="advantage-title">Доставка по Нягани</h3>
+                    <p class="advantage-text">Аккуратно и в удобное для вас время</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="advantage-title">Сборка на месте</h3>
+                    <p class="advantage-text">Профессиональная сборка нашими мастерами</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 class="advantage-title">Гарантия качества</h3>
+                    <p class="advantage-text">На всю продукцию предоставляется гарантия</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Каталог -->
+    <section id="catalog" class="catalog">
+        <div class="container">
+            <h2 class="section-title">Категории мебели</h2>
+            <div class="catalog-grid">
+                <div class="catalog-card">
+                    <div class="catalog-card-image" style="background-image: url('images/living-room.jpg');">
+                        <div class="catalog-card-overlay"></div>
+                        <div class="catalog-card-content">
+                            <h3 class="catalog-card-title">Гостиные</h3>
+                        </div>
+                    </div>
+                    <button class="catalog-card-btn" data-category="living-room">Посмотреть примеры</button>
+                </div>
+                <div class="catalog-card">
+                    <div class="catalog-card-image" style="background-image: url('images/bedroom.jpg');">
+                        <div class="catalog-card-overlay"></div>
+                        <div class="catalog-card-content">
+                            <h3 class="catalog-card-title">Спальни</h3>
+                        </div>
+                    </div>
+                    <button class="catalog-card-btn" data-category="bedroom">Посмотреть примеры</button>
+                </div>
+                <div class="catalog-card">
+                    <div class="catalog-card-image" style="background-image: url('images/kitchen.jpg');">
+                        <div class="catalog-card-overlay"></div>
+                        <div class="catalog-card-content">
+                            <h3 class="catalog-card-title">Кухни</h3>
+                        </div>
+                    </div>
+                    <button class="catalog-card-btn" data-category="kitchen">Посмотреть примеры</button>
+                </div>
+                <div class="catalog-card">
+                    <div class="catalog-card-image" style="background-image: url('images/office.jpg');">
+                        <div class="catalog-card-overlay"></div>
+                        <div class="catalog-card-content">
+                            <h3 class="catalog-card-title">Офис</h3>
+                        </div>
+                    </div>
+                    <button class="catalog-card-btn" data-category="office">Посмотреть примеры</button>
+                </div>
+                <div class="catalog-card">
+                    <div class="catalog-card-image" style="background-image: url('images/kids-room.jpg');">
+                        <div class="catalog-card-overlay"></div>
+                        <div class="catalog-card-content">
+                            <h3 class="catalog-card-title">Детская</h3>
+                        </div>
+                    </div>
+                    <button class="catalog-card-btn" data-category="kids-room">Посмотреть примеры</button>
+                </div>
+                <div class="catalog-card">
+                    <div class="catalog-card-image" style="background-image: url('images/sofa.jpg');">
+                        <div class="catalog-card-overlay"></div>
+                        <div class="catalog-card-content">
+                            <h3 class="catalog-card-title">Мягкая мебель</h3>
+                        </div>
+                    </div>
+                    <button class="catalog-card-btn" data-category="sofa">Посмотреть примеры</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts" class="contacts">
+        <div class="container">
+            <h2 class="section-title">Приходите к нам</h2>
+            <div class="contacts-content">
+                <div class="contacts-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Адрес</h3>
+                            <p>ул. Чернышова, 5Г, Нягань, ХМАО</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h3>Телефон</h3>
+                            <p>+7 (982) 415-77-75</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3>Время работы</h3>
+                            <p>Пн-Пт: 10:00 - 19:00</p>
+                            <p>Сб-Вс: 10:00 - 17:00</p>
+                        </div>
+                    </div>
+                    <a href="tel:+79824157775" class="btn btn-primary contact-btn">Позвонить</a>
+                </div>
+                <div class="contacts-map">
+                    <h3>Мы на карте</h3>
+                    <div class="map-container">
+                        <!-- Карта будет добавлена через JS -->
+                        <div id="map-placeholder">
+                            <div class="map-fallback">
+                                <p><i class="fas fa-map-marked-alt"></i></p>
+                                <p>ул. Чернышова, 5Г, Нягань, ХМАО</p>
+                                <p>Для навигации используйте Яндекс.Карты или Google Maps</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Форма обратной связи -->
+    <section class="feedback">
+        <div class="container">
+            <div class="feedback-content">
+                <div class="feedback-info">
+                    <h2 class="section-title">Остались вопросы? Закажите звонок</h2>
+                    <p>Наши специалисты свяжутся с вами в течение 30 минут и ответят на все вопросы</p>
+                </div>
+                <form id="feedback-form" class="feedback-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone" placeholder="Ваш телефон" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Что вас интересует? (например, кухонный гарнитур, диван, офисный стол)" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Заказать консультацию</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <p class="copyright">© Гранд Мебель, Нягань, 2024</p>
+                </div>
+                <div class="footer-column">
+                    <a href="tel:+79824157775" class="footer-phone">+7 (982) 415-77-75</a>
+                </div>
+                <div class="footer-column">
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="VKontakte">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>г. Нягань, ул. Чернышова, 5Г</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно для галереи -->
+    <div id="gallery-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Гостиные</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="gallery-grid" id="gallery-grid">
+                    <!-- Галерея будет заполнена через JS -->
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-primary" id="modal-consult-btn">Заказать консультацию</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Сообщение об успешной отправке формы -->
+    <div id="success-message" class="success-message">
+        <div class="success-content">
+            <i class="fas fa-check-circle"></i>
+            <h3>Спасибо! Мы скоро вам перезвоним</h3>
+            <p>Наш менеджер свяжется с вами в ближайшее время</p>
+            <button class="btn btn-primary" id="close-success">Хорошо</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
