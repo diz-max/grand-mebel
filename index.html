@@ -7,34 +7,38 @@
     <meta name="description" content="Широкий ассортимент мебели для дома, квартиры и офиса в Нягани. Бесплатная консультация, доставка и сборка.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Serif:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Глобальные переменные и сброс стилей */
         :root {
-            --color-primary: #1a3c2a;
-            --color-primary-light: #2a5c3d;
-            --color-secondary: #c9a16e;
-            --color-accent: #8b4513;
-            --color-background: #f9f7f4;
+            --color-primary: #a0522d; /* Красновато-бежевый как в логотипе */
+            --color-primary-light: #c17a4a;
+            --color-primary-dark: #8b4513;
+            --color-secondary: #f5e7d8; /* Светлый бежевый */
+            --color-accent: #d2691e;
+            --color-background: #fefaf6; /* Очень светлый бежевый фон */
             --color-surface: #ffffff;
-            --color-text: #2c2c2c;
-            --color-text-light: #666666;
-            --color-border: #e8e4dd;
+            --color-text: #3a2c1c; /* Теплый коричневый для текста */
+            --color-text-light: #7a6a5a;
+            --color-border: #e8d9c8;
+            --color-sale: #e74c3c; /* Цвет для акций */
+            --color-sale-light: #ffefed;
             
             --font-primary: 'Inter', sans-serif;
-            --font-secondary: 'Playfair Display', serif;
+            --font-secondary: 'Noto Serif', serif;
             
-            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
+            --shadow-sm: 0 4px 15px rgba(160, 82, 45, 0.08);
+            --shadow-md: 0 8px 30px rgba(160, 82, 45, 0.12);
+            --shadow-lg: 0 15px 50px rgba(160, 82, 45, 0.15);
             
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 20px;
+            --radius-sm: 10px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-full: 50%;
             
-            --transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-            --transition-fast: all 0.2s ease;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            --transition-slow: all 0.6s ease;
         }
         
         * {
@@ -50,29 +54,11 @@
         
         body {
             font-family: var(--font-primary);
-            font-size: 16px;
-            line-height: 1.6;
+            font-size: 17px;
+            line-height: 1.7;
             color: var(--color-text);
             background-color: var(--color-background);
             overflow-x: hidden;
-        }
-        
-        .parallax-section {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .parallax-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 120%;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            z-index: -1;
-            will-change: transform;
         }
         
         .container {
@@ -80,8 +66,6 @@
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 20px;
-            position: relative;
-            z-index: 2;
         }
         
         section {
@@ -100,11 +84,11 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 16px 36px;
+            padding: 18px 40px;
             border-radius: var(--radius-sm);
             font-family: var(--font-primary);
-            font-weight: 600;
-            font-size: 16px;
+            font-weight: 500;
+            font-size: 17px;
             text-decoration: none;
             cursor: pointer;
             transition: var(--transition);
@@ -112,21 +96,23 @@
             outline: none;
             position: relative;
             overflow: hidden;
+            gap: 10px;
         }
         
-        .btn::after {
+        .btn::before {
             content: '';
             position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            top: 0;
-            left: -100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
+            opacity: 0;
+            transition: var(--transition);
         }
         
-        .btn:hover::after {
-            left: 100%;
+        .btn:hover::before {
+            opacity: 1;
         }
         
         .btn-primary {
@@ -136,8 +122,8 @@
         }
         
         .btn-primary:hover {
-            background-color: var(--color-primary-light);
-            transform: translateY(-3px);
+            background-color: var(--color-primary-dark);
+            transform: translateY(-5px);
             box-shadow: var(--shadow-lg);
         }
         
@@ -148,35 +134,63 @@
         }
         
         .btn-secondary:hover {
-            background-color: rgba(26, 60, 42, 0.05);
-            transform: translateY(-3px);
+            background-color: rgba(160, 82, 45, 0.05);
+            transform: translateY(-5px);
+        }
+        
+        .btn-sale {
+            background-color: var(--color-sale);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-sale:hover {
+            background-color: #d62c1a;
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
         }
         
         /* Заголовки */
         .section-title {
             font-family: var(--font-secondary);
-            font-size: 42px;
+            font-size: 44px;
             font-weight: 600;
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 70px;
             color: var(--color-text);
             position: relative;
+            line-height: 1.3;
         }
         
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -15px;
+            bottom: -20px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--color-secondary);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--color-primary), var(--color-accent));
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--color-text-light);
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            line-height: 1.6;
         }
         
         @media (max-width: 992px) {
             .section-title {
-                font-size: 36px;
+                font-size: 38px;
+                margin-bottom: 60px;
+            }
+            
+            .section-subtitle {
+                font-size: 18px;
                 margin-bottom: 50px;
             }
         }
@@ -184,6 +198,11 @@
         @media (max-width: 768px) {
             .section-title {
                 font-size: 32px;
+                margin-bottom: 50px;
+            }
+            
+            .section-subtitle {
+                font-size: 17px;
                 margin-bottom: 40px;
             }
         }
@@ -194,56 +213,74 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
             box-shadow: var(--shadow-sm);
             z-index: 1000;
             transition: var(--transition);
         }
         
         .header.scrolled {
-            padding: 10px 0;
             background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 25px rgba(160, 82, 45, 0.1);
         }
         
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 18px 0;
             transition: var(--transition);
         }
         
-        .header.scrolled .header-content {
-            padding: 10px 0;
-        }
-        
         .logo {
-            font-family: var(--font-secondary);
-            font-size: 28px;
-            font-weight: 600;
-            color: var(--color-primary);
-            text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
+            text-decoration: none;
         }
         
         .logo-img {
-            height: 50px;
+            height: 55px;
             width: auto;
             object-fit: contain;
+            transition: var(--transition);
+        }
+        
+        .logo:hover .logo-img {
+            transform: scale(1.05);
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-title {
+            font-family: var(--font-secondary);
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--color-primary);
+            line-height: 1.1;
+        }
+        
+        .logo-subtitle {
+            font-size: 13px;
+            color: var(--color-text-light);
+            margin-top: 3px;
+            letter-spacing: 0.5px;
         }
         
         .nav {
             display: flex;
             align-items: center;
+            gap: 40px;
         }
         
         .nav-list {
             display: flex;
             list-style: none;
-            gap: 40px;
+            gap: 35px;
         }
         
         .nav-link {
@@ -252,7 +289,8 @@
             font-weight: 500;
             font-size: 16px;
             position: relative;
-            padding: 5px 0;
+            padding: 8px 0;
+            transition: var(--transition);
         }
         
         .nav-link::after {
@@ -264,6 +302,7 @@
             height: 2px;
             background-color: var(--color-primary);
             transition: var(--transition);
+            border-radius: 1px;
         }
         
         .nav-link:hover::after,
@@ -276,38 +315,78 @@
             color: var(--color-primary);
         }
         
+        .header-contact {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            padding: 10px 15px;
+            border-radius: var(--radius-sm);
+            background-color: rgba(160, 82, 45, 0.05);
+        }
+        
+        .header-contact:hover {
+            background-color: rgba(160, 82, 45, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .header-contact i {
+            font-size: 18px;
+        }
+        
         .menu-toggle {
             display: none;
             font-size: 24px;
             cursor: pointer;
             color: var(--color-primary);
+            padding: 8px;
+            border-radius: var(--radius-sm);
+            background-color: rgba(160, 82, 45, 0.05);
+            transition: var(--transition);
         }
         
-        @media (max-width: 992px) {
+        .menu-toggle:hover {
+            background-color: rgba(160, 82, 45, 0.1);
+        }
+        
+        @media (max-width: 1100px) {
             .nav-list {
                 gap: 25px;
             }
+            
+            .header-contact {
+                padding: 8px 12px;
+                font-size: 15px;
+            }
         }
         
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .menu-toggle {
                 display: block;
             }
             
+            .nav {
+                gap: 20px;
+            }
+            
             .nav-list {
                 position: fixed;
-                top: 80px;
+                top: 90px;
                 left: 0;
                 width: 100%;
                 flex-direction: column;
                 background-color: var(--color-surface);
                 padding: 30px;
-                box-shadow: var(--shadow-md);
+                box-shadow: var(--shadow-lg);
                 transform: translateY(-100%);
                 opacity: 0;
                 visibility: hidden;
                 transition: var(--transition);
                 z-index: 999;
+                border-radius: 0 0 var(--radius-md) var(--radius-md);
             }
             
             .nav-list.active {
@@ -317,51 +396,102 @@
             }
             
             .nav-list li {
-                margin-bottom: 20px;
+                margin-bottom: 15px;
+            }
+            
+            .header-contact {
+                display: none;
             }
             
             .header.scrolled .nav-list {
-                top: 70px;
+                top: 80px;
             }
         }
         
-        /* Герой-секция с параллаксом */
+        @media (max-width: 576px) {
+            .logo-text {
+                display: none;
+            }
+        }
+        
+        /* Герой-секция с адаптивным баннером */
         .hero {
-            height: 100vh;
-            min-height: 700px;
-            display: flex;
-            align-items: center;
-            margin-top: 80px;
+            padding-top: 150px;
+            padding-bottom: 100px;
+            background: linear-gradient(135deg, var(--color-background) 0%, #fcf3e9 100%);
+            position: relative;
+            overflow: hidden;
         }
         
-        .hero-bg {
-            background-image: url('images/vhod_grup.png');
-            transform: translateZ(-1px) scale(1.2);
-        }
-        
-        .hero-overlay {
+        .hero::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%);
+            background-image: url('images/vhod_grup.png');
+            background-size: contain;
+            background-position: right center;
+            background-repeat: no-repeat;
+            opacity: 1;
             z-index: 1;
         }
         
-        .hero-content {
-            max-width: 800px;
-            color: white;
-            position: relative;
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(to right, var(--color-background) 0%, rgba(254, 250, 246, 0.8) 50%, rgba(254, 250, 246, 0) 100%);
             z-index: 2;
+        }
+        
+        @media (max-width: 1200px) {
+            .hero::before {
+                background-size: cover;
+                background-position: center right;
+            }
+            
+            .hero::after {
+                width: 70%;
+                background: linear-gradient(to right, var(--color-background) 0%, rgba(254, 250, 246, 0.9) 60%, rgba(254, 250, 246, 0) 100%);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding-top: 120px;
+                padding-bottom: 80px;
+            }
+            
+            .hero::before {
+                background-size: cover;
+                background-position: center right;
+                opacity: 0.7;
+            }
+            
+            .hero::after {
+                width: 100%;
+                background: linear-gradient(to right, var(--color-background) 0%, rgba(254, 250, 246, 0.95) 50%, rgba(254, 250, 246, 0.8) 100%);
+            }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 650px;
         }
         
         .hero-title {
             font-family: var(--font-secondary);
-            font-size: 64px;
+            font-size: 58px;
             font-weight: 600;
             line-height: 1.1;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            color: var(--color-text);
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 1s forwards 0.3s;
@@ -370,10 +500,48 @@
         .hero-subtitle {
             font-size: 22px;
             margin-bottom: 40px;
-            opacity: 0.9;
+            color: var(--color-text-light);
+            line-height: 1.6;
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 1s forwards 0.5s;
+        }
+        
+        .hero-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 45px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.7s;
+        }
+        
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 15px 20px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(5px);
+            transition: var(--transition);
+        }
+        
+        .hero-feature:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .hero-feature i {
+            color: var(--color-primary);
+            font-size: 22px;
+        }
+        
+        .hero-feature-text {
+            font-weight: 500;
+            color: var(--color-text);
         }
         
         .hero-buttons {
@@ -381,12 +549,12 @@
             gap: 20px;
             opacity: 0;
             transform: translateY(30px);
-            animation: fadeInUp 1s forwards 0.7s;
+            animation: fadeInUp 1s forwards 0.9s;
         }
         
         @media (max-width: 1200px) {
             .hero-title {
-                font-size: 56px;
+                font-size: 52px;
             }
             
             .hero-subtitle {
@@ -396,19 +564,23 @@
         
         @media (max-width: 992px) {
             .hero-title {
-                font-size: 48px;
+                font-size: 46px;
             }
             
             .hero-subtitle {
-                font-size: 18px;
+                font-size: 19px;
+            }
+            
+            .hero-features {
+                gap: 15px;
+            }
+            
+            .hero-feature {
+                padding: 12px 18px;
             }
         }
         
         @media (max-width: 768px) {
-            .hero {
-                min-height: 600px;
-            }
-            
             .hero-title {
                 font-size: 40px;
             }
@@ -426,26 +598,332 @@
                 width: 100%;
                 text-align: center;
             }
+            
+            .hero-features {
+                justify-content: center;
+            }
         }
         
         @media (max-width: 576px) {
             .hero-title {
-                font-size: 36px;
+                font-size: 34px;
             }
             
             .hero-subtitle {
-                font-size: 16px;
+                font-size: 17px;
+            }
+            
+            .hero-feature {
+                padding: 10px 15px;
+            }
+            
+            .hero-feature i {
+                font-size: 20px;
             }
         }
         
-        /* Преимущества с параллаксом */
-        .advantages {
-            background-color: var(--color-background);
+        /* Акции и скидки */
+        .sales {
+            background-color: var(--color-surface);
+            position: relative;
         }
         
-        .advantages-bg {
-            background-image: url('images/advantages-bg.jpg');
-            opacity: 0.03;
+        .sales::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 20% 50%, rgba(245, 231, 216, 0.3) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 20%, rgba(160, 82, 45, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+        
+        .sales-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .sales-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        @media (max-width: 1100px) {
+            .sales-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .sales-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+        
+        .sale-card {
+            background-color: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sale-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .sale-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--color-sale);
+            color: white;
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 18px;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        }
+        
+        .sale-card-image {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .sale-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+        }
+        
+        .sale-card-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sale-card-title {
+            font-family: var(--font-secondary);
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--color-text);
+            line-height: 1.3;
+        }
+        
+        .sale-card-text {
+            color: var(--color-text-light);
+            margin-bottom: 20px;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        
+        .sale-card-price {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .sale-card-old-price {
+            color: var(--color-text-light);
+            text-decoration: line-through;
+            font-size: 18px;
+        }
+        
+        .sale-card-new-price {
+            color: var(--color-sale);
+            font-size: 26px;
+            font-weight: 700;
+        }
+        
+        .sales-all {
+            text-align: center;
+        }
+        
+        .sales-all .btn {
+            padding: 20px 50px;
+            font-size: 18px;
+        }
+        
+        /* Категории товаров */
+        .categories {
+            background-color: var(--color-background);
+            position: relative;
+        }
+        
+        .categories::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 10% 10%, rgba(160, 82, 45, 0.05) 0%, transparent 40%),
+                              radial-gradient(circle at 90% 90%, rgba(245, 231, 216, 0.3) 0%, transparent 40%);
+            z-index: 1;
+        }
+        
+        .categories-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        @media (max-width: 1100px) {
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .category-card {
+            background-color: var(--color-surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            position: relative;
+            height: 280px;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(160, 82, 45, 0.1) 0%, rgba(160, 82, 45, 0) 100%);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 2;
+        }
+        
+        .category-card:hover::before {
+            opacity: 1;
+        }
+        
+        .category-card-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: var(--transition-slow);
+            z-index: 1;
+        }
+        
+        .category-card:hover .category-card-image {
+            transform: scale(1.05);
+        }
+        
+        .category-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(58, 44, 28, 0.7) 100%);
+            z-index: 1;
+        }
+        
+        .category-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            color: white;
+            z-index: 3;
+        }
+        
+        .category-card-title {
+            font-family: var(--font-secondary);
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .category-card-count {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .category-card-btn {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 12px 25px;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .category-card-btn:hover {
+            background-color: white;
+            color: var(--color-primary);
+        }
+        
+        /* Преимущества */
+        .advantages {
+            background-color: var(--color-surface);
+            position: relative;
+        }
+        
+        .advantages::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 80% 30%, rgba(245, 231, 216, 0.4) 0%, transparent 50%);
+            z-index: 1;
+        }
+        
+        .advantages-content {
+            position: relative;
+            z-index: 2;
         }
         
         .advantages-grid {
@@ -454,38 +932,44 @@
             gap: 30px;
         }
         
-        @media (max-width: 1200px) {
+        @media (max-width: 1100px) {
             .advantages-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
         
-        @media (max-width: 768px) {
+        @media (max-width: 576px) {
             .advantages-grid {
                 grid-template-columns: 1fr;
             }
         }
         
         .advantage-card {
-            background-color: var(--color-surface);
-            border-radius: var(--radius-md);
+            background-color: white;
+            border-radius: var(--radius-lg);
             padding: 40px 30px;
             text-align: center;
-            box-shadow: var(--shadow-sm);
+            box-shadow: var(--shadow-md);
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .advantage-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--color-primary), var(--color-accent));
             opacity: 0;
-            transform: translateY(30px);
+            transition: var(--transition);
         }
         
-        .advantage-card.visible {
+        .advantage-card:hover::before {
             opacity: 1;
-            transform: translateY(0);
         }
-        
-        .advantage-card:nth-child(1) { transition-delay: 0.1s; }
-        .advantage-card:nth-child(2) { transition-delay: 0.2s; }
-        .advantage-card:nth-child(3) { transition-delay: 0.3s; }
-        .advantage-card:nth-child(4) { transition-delay: 0.4s; }
         
         .advantage-card:hover {
             transform: translateY(-10px);
@@ -495,19 +979,22 @@
         .advantage-icon {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
-            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-secondary) 0%, #f0e2d0 100%);
+            border-radius: var(--radius-full);
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 25px;
-            color: white;
-            font-size: 32px;
+            color: var(--color-primary);
+            font-size: 34px;
             transition: var(--transition);
+            box-shadow: 0 8px 25px rgba(160, 82, 45, 0.15);
         }
         
         .advantage-card:hover .advantage-icon {
             transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+            color: white;
         }
         
         .advantage-title {
@@ -521,143 +1008,41 @@
         .advantage-text {
             color: var(--color-text-light);
             font-size: 16px;
-            line-height: 1.5;
+            line-height: 1.6;
         }
         
-        /* Каталог с параллаксом */
-        .catalog {
-            background-color: var(--color-surface);
-        }
-        
-        .catalog-bg {
-            background-image: url('images/catalog-bg.jpg');
-            opacity: 0.03;
-        }
-        
-        .catalog-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-        
-        @media (max-width: 1200px) {
-            .catalog-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .catalog-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .catalog-card {
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition);
-            opacity: 0;
-            transform: translateY(40px);
+        /* Контакты */
+        .contacts {
+            background-color: var(--color-background);
             position: relative;
-            height: 350px;
         }
         
-        .catalog-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .catalog-card:nth-child(1) { transition-delay: 0.1s; }
-        .catalog-card:nth-child(2) { transition-delay: 0.2s; }
-        .catalog-card:nth-child(3) { transition-delay: 0.3s; }
-        .catalog-card:nth-child(4) { transition-delay: 0.4s; }
-        .catalog-card:nth-child(5) { transition-delay: 0.5s; }
-        .catalog-card:nth-child(6) { transition-delay: 0.6s; }
-        
-        .catalog-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .catalog-card-image {
+        .contacts::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-size: cover;
-            background-position: center;
-            transition: var(--transition);
+            background-image: url('images/pattern-beige.png');
+            background-size: 300px;
+            opacity: 0.05;
             z-index: 1;
         }
         
-        .catalog-card:hover .catalog-card-image {
-            transform: scale(1.05);
-        }
-        
-        .catalog-card-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
-            z-index: 2;
-        }
-        
-        .catalog-card-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 30px;
-            color: white;
-            z-index: 3;
-        }
-        
-        .catalog-card-title {
-            font-family: var(--font-secondary);
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        
-        .catalog-card-btn {
-            background-color: transparent;
-            color: white;
-            border: 2px solid white;
-            padding: 10px 20px;
-            border-radius: var(--radius-sm);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            margin-top: 15px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .catalog-card-btn:hover {
-            background-color: white;
-            color: var(--color-primary);
-        }
-        
-        /* Контакты с параллаксом */
-        .contacts {
-            background-color: var(--color-background);
-        }
-        
-        .contacts-bg {
-            background-image: url('images/contacts-bg.jpg');
-            opacity: 0.03;
-        }
-        
         .contacts-content {
+            position: relative;
+            z-index: 2;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
             align-items: center;
+        }
+        
+        @media (max-width: 1100px) {
+            .contacts-content {
+                gap: 60px;
+            }
         }
         
         @media (max-width: 992px) {
@@ -670,55 +1055,44 @@
         .contacts-info {
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 35px;
         }
         
         .contact-item {
             display: flex;
             gap: 20px;
             align-items: flex-start;
-            opacity: 0;
-            transform: translateX(-30px);
+            background-color: white;
+            padding: 25px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
         }
         
-        .contact-item.visible {
-            opacity: 1;
-            transform: translateX(0);
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
         }
-        
-        .contact-item:nth-child(1) { transition-delay: 0.1s; }
-        .contact-item:nth-child(2) { transition-delay: 0.2s; }
-        .contact-item:nth-child(3) { transition-delay: 0.3s; }
         
         .contact-item i {
             font-size: 28px;
             color: var(--color-primary);
             margin-top: 5px;
+            flex-shrink: 0;
         }
         
-        .contact-item h3 {
+        .contact-item-content h3 {
             font-family: var(--font-secondary);
             font-size: 22px;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             color: var(--color-text);
         }
         
-        .contact-item p {
+        .contact-item-content p {
             color: var(--color-text-light);
             font-size: 17px;
-        }
-        
-        .contact-btn {
-            margin-top: 10px;
-            opacity: 0;
-            transform: translateX(-30px);
-        }
-        
-        .contact-btn.visible {
-            opacity: 1;
-            transform: translateX(0);
-            transition-delay: 0.4s;
+            line-height: 1.6;
         }
         
         .contacts-map {
@@ -726,26 +1100,19 @@
             border-radius: var(--radius-lg);
             overflow: hidden;
             box-shadow: var(--shadow-lg);
-            opacity: 0;
-            transform: translateX(30px);
-        }
-        
-        .contacts-map.visible {
-            opacity: 1;
-            transform: translateX(0);
-            transition-delay: 0.5s;
+            position: relative;
         }
         
         .map-container {
             height: 100%;
             width: 100%;
-            background-color: #f0f0f0;
+            background-color: #f0e2d0;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 30px;
+            padding: 40px;
             position: relative;
             overflow: hidden;
         }
@@ -757,8 +1124,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
-            opacity: 0.05;
+            background: linear-gradient(135deg, rgba(160, 82, 45, 0.05) 0%, rgba(245, 231, 216, 0.3) 100%);
             z-index: 1;
         }
         
@@ -770,98 +1136,82 @@
         .map-icon {
             font-size: 70px;
             color: var(--color-primary);
-            margin-bottom: 20px;
-            opacity: 0.7;
+            margin-bottom: 25px;
+            opacity: 0.8;
         }
         
         .map-title {
             font-family: var(--font-secondary);
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: var(--color-text);
         }
         
         .map-address {
-            font-size: 18px;
-            color: var(--color-text-light);
-            margin-bottom: 10px;
+            font-size: 19px;
+            color: var(--color-text);
+            margin-bottom: 15px;
+            line-height: 1.5;
         }
         
         .map-note {
-            font-size: 14px;
+            font-size: 16px;
             color: var(--color-text-light);
-            margin-top: 20px;
-            opacity: 0.7;
+            margin-top: 25px;
+            opacity: 0.8;
         }
         
-        /* Форма обратной связи с параллаксом */
+        /* Форма обратной связи */
         .feedback {
             background-color: var(--color-surface);
+            position: relative;
         }
         
-        .feedback-bg {
-            background-image: url('images/feedback-bg.jpg');
+        .feedback::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/pattern-dots.png');
+            background-size: 200px;
             opacity: 0.03;
+            z-index: 1;
         }
         
         .feedback-content {
-            max-width: 800px;
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
             margin: 0 auto;
             text-align: center;
         }
         
-        .feedback-info {
-            margin-bottom: 50px;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .feedback-info.visible {
-            opacity: 1;
-            transform: translateY(0);
-            transition-delay: 0.2s;
-        }
-        
-        .feedback-info p {
-            color: var(--color-text-light);
-            font-size: 18px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
         .feedback-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .feedback-form.visible {
-            opacity: 1;
-            transform: translateY(0);
-            transition-delay: 0.4s;
-        }
-        
-        .feedback-form .form-group:nth-child(3) {
-            grid-column: span 2;
-        }
-        
-        .feedback-form button {
-            grid-column: span 2;
-            justify-self: center;
-            margin-top: 10px;
+            background-color: white;
+            border-radius: var(--radius-lg);
+            padding: 60px;
+            box-shadow: var(--shadow-lg);
         }
         
         @media (max-width: 768px) {
             .feedback-form {
-                grid-template-columns: 1fr;
+                padding: 40px 30px;
             }
-            
-            .feedback-form .form-group:nth-child(3),
-            .feedback-form button {
-                grid-column: 1;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+        
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
             }
         }
         
@@ -870,73 +1220,110 @@
         }
         
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
-            padding: 18px 20px;
-            border: 1px solid var(--color-border);
+            padding: 20px 25px;
+            border: 2px solid var(--color-border);
             border-radius: var(--radius-sm);
             font-family: var(--font-primary);
-            font-size: 16px;
+            font-size: 17px;
             transition: var(--transition);
             background-color: white;
+            color: var(--color-text);
         }
         
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
             border-color: var(--color-primary);
-            box-shadow: 0 0 0 3px rgba(26, 60, 42, 0.1);
+            box-shadow: 0 0 0 4px rgba(160, 82, 45, 0.1);
         }
         
         .form-group textarea {
             resize: vertical;
-            min-height: 140px;
+            min-height: 160px;
+            grid-column: span 2;
+        }
+        
+        @media (max-width: 768px) {
+            .form-group textarea {
+                grid-column: 1;
+            }
         }
         
         .form-label {
             position: absolute;
-            top: 18px;
-            left: 20px;
+            top: 20px;
+            left: 25px;
             color: var(--color-text-light);
             transition: var(--transition);
             pointer-events: none;
             background-color: white;
-            padding: 0 5px;
+            padding: 0 10px;
+            font-size: 17px;
         }
         
         .form-group input:focus + .form-label,
         .form-group input:not(:placeholder-shown) + .form-label,
         .form-group textarea:focus + .form-label,
-        .form-group textarea:not(:placeholder-shown) + .form-label {
-            top: -10px;
-            font-size: 14px;
+        .form-group textarea:not(:placeholder-shown) + .form-label,
+        .form-group select:focus + .form-label,
+        .form-group select:not([value=""]) + .form-label {
+            top: -12px;
+            font-size: 15px;
             color: var(--color-primary);
+            font-weight: 500;
+        }
+        
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23a0522d' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 25px center;
+            background-size: 16px;
+        }
+        
+        .form-submit {
+            text-align: center;
         }
         
         /* Футер */
         .footer {
-            background-color: var(--color-primary);
+            background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
             color: white;
             padding: 80px 0 30px;
             position: relative;
             overflow: hidden;
         }
         
-        .footer-bg {
-            background-image: url('images/footer-bg.jpg');
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/pattern-light.png');
+            background-size: 300px;
             opacity: 0.05;
+            z-index: 1;
         }
         
         .footer-content {
+            position: relative;
+            z-index: 2;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
             gap: 50px;
             margin-bottom: 60px;
         }
         
-        @media (max-width: 992px) {
+        @media (max-width: 1100px) {
             .footer-content {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
             }
         }
         
@@ -960,20 +1347,48 @@
         }
         
         .footer-logo {
-            font-family: var(--font-secondary);
-            font-size: 28px;
-            font-weight: 600;
-            color: white;
-            text-decoration: none;
-            margin-bottom: 20px;
-            display: inline-block;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .footer-logo-img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
         }
         
         .footer-about {
-            opacity: 0.8;
+            opacity: 0.9;
             font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 20px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-full);
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background-color: white;
+            color: var(--color-primary);
+            transform: translateY(-3px);
         }
         
         .footer-title {
@@ -983,7 +1398,7 @@
             margin-bottom: 25px;
             color: white;
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
         }
         
         .footer-title::after {
@@ -992,8 +1407,9 @@
             bottom: 0;
             left: 0;
             width: 40px;
-            height: 2px;
-            background-color: var(--color-secondary);
+            height: 3px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 2px;
         }
         
         @media (max-width: 768px) {
@@ -1008,11 +1424,11 @@
         }
         
         .footer-links li {
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
         
         .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
             transition: var(--transition);
             display: flex;
@@ -1031,6 +1447,10 @@
             transform: translateX(5px);
         }
         
+        .footer-links a i {
+            font-size: 12px;
+        }
+        
         .footer-contact-item {
             display: flex;
             align-items: flex-start;
@@ -1045,44 +1465,25 @@
         }
         
         .footer-contact-item i {
-            color: var(--color-secondary);
+            color: rgba(255, 255, 255, 0.9);
             font-size: 18px;
             margin-top: 3px;
+            flex-shrink: 0;
         }
         
         .footer-contact-text {
             color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
         }
         
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        @media (max-width: 768px) {
-            .social-links {
-                justify-content: center;
-            }
-        }
-        
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 44px;
-            height: 44px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
+        .footer-contact-text a {
             color: white;
-            font-size: 18px;
             text-decoration: none;
             transition: var(--transition);
         }
         
-        .social-link:hover {
-            background-color: var(--color-secondary);
-            transform: translateY(-3px);
+        .footer-contact-text a:hover {
+            color: var(--color-secondary);
         }
         
         .footer-bottom {
@@ -1090,203 +1491,9 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
             font-size: 15px;
-            opacity: 0.7;
-        }
-        
-        /* Модальное окно галереи */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-        }
-        
-        .modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .modal-content {
-            background-color: var(--color-surface);
-            border-radius: var(--radius-lg);
-            max-width: 1000px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            transform: scale(0.9);
-            transition: var(--transition);
-        }
-        
-        .modal.active .modal-content {
-            transform: scale(1);
-        }
-        
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 25px 30px;
-            border-bottom: 1px solid var(--color-border);
-        }
-        
-        .modal-header h3 {
-            font-family: var(--font-secondary);
-            font-size: 28px;
-            font-weight: 600;
-            color: var(--color-text);
-        }
-        
-        .modal-close {
-            background: none;
-            border: none;
-            font-size: 30px;
-            cursor: pointer;
-            color: var(--color-text-light);
-            transition: var(--transition);
-            line-height: 1;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
-        
-        .modal-close:hover {
-            background-color: rgba(0, 0, 0, 0.05);
-            color: var(--color-primary);
-        }
-        
-        .modal-body {
-            padding: 30px;
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        
-        @media (max-width: 992px) {
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .gallery-item {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            cursor: pointer;
-            transition: var(--transition);
+            opacity: 0.8;
             position: relative;
-        }
-        
-        .gallery-item:hover {
-            transform: scale(1.03);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .gallery-item-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: var(--transition);
-        }
-        
-        .gallery-item:hover .gallery-item-overlay {
-            opacity: 1;
-        }
-        
-        .gallery-item-overlay i {
-            color: white;
-            font-size: 30px;
-        }
-        
-        .modal-actions {
-            text-align: center;
-        }
-        
-        /* Сообщение об успешной отправке */
-        .success-message {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-        }
-        
-        .success-message.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .success-content {
-            background-color: var(--color-surface);
-            border-radius: var(--radius-lg);
-            padding: 50px;
-            text-align: center;
-            max-width: 500px;
-            width: 90%;
-            transform: scale(0.9);
-            transition: var(--transition);
-        }
-        
-        .success-message.active .success-content {
-            transform: scale(1);
-        }
-        
-        .success-content i {
-            font-size: 70px;
-            color: var(--color-primary);
-            margin-bottom: 25px;
-        }
-        
-        .success-content h3 {
-            font-family: var(--font-secondary);
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: var(--color-text);
-        }
-        
-        .success-content p {
-            color: var(--color-text-light);
-            margin-bottom: 30px;
-            font-size: 17px;
+            z-index: 2;
         }
         
         /* Анимации */
@@ -1301,75 +1508,50 @@
             }
         }
         
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
             }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
+            50% {
+                transform: translateY(-10px);
             }
         }
         
         /* Декоративные элементы */
-        .floating-element {
+        .floating-shape {
             position: absolute;
             z-index: 1;
             pointer-events: none;
+            animation: float 6s infinite ease-in-out;
         }
         
-        .floating-element.shape-1 {
-            top: 10%;
+        .shape-1 {
+            top: 20%;
             left: 5%;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(26, 60, 42, 0.1) 0%, rgba(201, 161, 110, 0.1) 100%);
-            animation: float 20s infinite ease-in-out;
+            width: 120px;
+            height: 120px;
+            border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%;
+            background: linear-gradient(135deg, rgba(160, 82, 45, 0.1) 0%, rgba(245, 231, 216, 0.2) 100%);
         }
         
-        .floating-element.shape-2 {
+        .shape-2 {
             bottom: 15%;
             right: 8%;
-            width: 150px;
-            height: 150px;
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            background: linear-gradient(135deg, rgba(201, 161, 110, 0.1) 0%, rgba(26, 60, 42, 0.1) 100%);
-            animation: float 25s infinite ease-in-out reverse;
+            width: 160px;
+            height: 160px;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            background: linear-gradient(135deg, rgba(245, 231, 216, 0.2) 0%, rgba(160, 82, 45, 0.1) 100%);
+            animation-delay: 1s;
         }
         
-        .floating-element.shape-3 {
+        .shape-3 {
             top: 40%;
             right: 12%;
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            background: linear-gradient(135deg, rgba(26, 60, 42, 0.08) 0%, rgba(201, 161, 110, 0.08) 100%);
-            animation: float 15s infinite ease-in-out;
-        }
-        
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            33% {
-                transform: translateY(-20px) rotate(120deg);
-            }
-            66% {
-                transform: translateY(10px) rotate(240deg);
-            }
+            background: linear-gradient(135deg, rgba(160, 82, 45, 0.08) 0%, rgba(245, 231, 216, 0.15) 100%);
+            animation-delay: 2s;
         }
         
         /* Прогресс бар прокрутки */
@@ -1378,31 +1560,60 @@
             top: 0;
             left: 0;
             width: 0%;
-            height: 3px;
-            background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+            height: 4px;
+            background: linear-gradient(to right, var(--color-primary), var(--color-accent));
             z-index: 1001;
             transition: width 0.1s ease;
+            box-shadow: 0 2px 10px rgba(160, 82, 45, 0.3);
         }
         
-        /* Запасные изображения для фона, если пользовательские не загружены */
-        .advantages-bg {
-            background-image: linear-gradient(135deg, #f9f7f4 0%, #f0ede8 100%);
+        /* Карусель акций (для мобильных) */
+        .sales-carousel {
+            display: none;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 40px;
         }
         
-        .catalog-bg {
-            background-image: linear-gradient(135deg, #ffffff 0%, #f9f7f4 100%);
+        .sales-carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
         }
         
-        .contacts-bg {
-            background-image: linear-gradient(135deg, #f9f7f4 0%, #f0ede8 100%);
+        .sales-carousel-slide {
+            flex: 0 0 100%;
+            padding: 0 10px;
         }
         
-        .feedback-bg {
-            background-image: linear-gradient(135deg, #ffffff 0%, #f9f7f4 100%);
+        .sales-carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
         }
         
-        .footer-bg {
-            background-image: linear-gradient(135deg, #1a3c2a 0%, #2a5c3d 100%);
+        .sales-carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--color-border);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .sales-carousel-dot.active {
+            background-color: var(--color-primary);
+            transform: scale(1.2);
+        }
+        
+        @media (max-width: 768px) {
+            .sales-carousel {
+                display: block;
+            }
+            
+            .sales-grid {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -1416,16 +1627,23 @@
             <div class="header-content">
                 <a href="#" class="logo">
                     <img src="images/logo.png" alt="Гранд Мебель" class="logo-img">
-                    <span>Гранд Мебель</span>
+                    <div class="logo-text">
+                        <div class="logo-title">Гранд Мебель</div>
+                        <div class="logo-subtitle">Нягань | С 2010 года</div>
+                    </div>
                 </a>
                 <nav class="nav">
                     <ul class="nav-list">
                         <li><a href="#hero" class="nav-link active">Главная</a></li>
+                        <li><a href="#sales" class="nav-link">Акции</a></li>
+                        <li><a href="#categories" class="nav-link">Каталог</a></li>
                         <li><a href="#advantages" class="nav-link">Преимущества</a></li>
-                        <li><a href="#catalog" class="nav-link">Каталог</a></li>
                         <li><a href="#contacts" class="nav-link">Контакты</a></li>
-                        <li><a href="#feedback" class="nav-link">Заказать</a></li>
                     </ul>
+                    <a href="tel:+79824157775" class="header-contact">
+                        <i class="fas fa-phone-alt"></i>
+                        +7 (982) 415-77-75
+                    </a>
                     <div class="menu-toggle">
                         <i class="fas fa-bars"></i>
                     </div>
@@ -1434,172 +1652,339 @@
         </div>
     </header>
     
-    <!-- Герой-секция с параллаксом -->
-    <section id="hero" class="hero parallax-section">
-        <div class="parallax-bg hero-bg"></div>
-        <div class="hero-overlay"></div>
-        <div class="floating-element shape-1"></div>
-        <div class="floating-element shape-2"></div>
+    <!-- Герой-секция -->
+    <section id="hero" class="hero">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title">Гранд Мебель — всё для вашего комфорта</h1>
-                <p class="hero-subtitle">Широкий ассортимент мебели для дома, квартиры и офиса в Нягани. Мы создаем уют в каждом доме с 2010 года.</p>
-                <div class="hero-buttons">
-                    <a href="#catalog" class="btn btn-primary">Посмотреть каталог</a>
-                    <a href="#feedback" class="btn btn-secondary">Заказать консультацию</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Преимущества с параллаксом -->
-    <section id="advantages" class="advantages parallax-section">
-        <div class="parallax-bg advantages-bg"></div>
-        <div class="floating-element shape-3"></div>
-        <div class="container">
-            <h2 class="section-title">Почему выбирают нас</h2>
-            <div class="advantages-grid">
-                <div class="advantage-card">
-                    <div class="advantage-icon">
-                        <i class="fas fa-phone-alt"></i>
-                    </div>
-                    <h3 class="advantage-title">Бесплатная консультация</h3>
-                    <p class="advantage-text">Поможем подобрать мебель под ваш интерьер и бюджет. Профессиональный дизайнер бесплатно приедет к вам</p>
-                </div>
-                <div class="advantage-card">
-                    <div class="advantage-icon">
+                <h1 class="hero-title">Создаём уют в вашем доме</h1>
+                <p class="hero-subtitle">Широкий ассортимент качественной мебели для дома, квартиры и офиса в Нягани. Более 5000 моделей в наличии и под заказ.</p>
+                
+                <div class="hero-features">
+                    <div class="hero-feature">
                         <i class="fas fa-truck"></i>
+                        <span class="hero-feature-text">Бесплатная доставка по Нягани</span>
                     </div>
-                    <h3 class="advantage-title">Доставка по Нягани</h3>
-                    <p class="advantage-text">Аккуратная доставка в удобное для вас время. Бесплатная доставка при заказе от 30 000 рублей</p>
-                </div>
-                <div class="advantage-card">
-                    <div class="advantage-icon">
-                        <i class="fas fa-tools"></i>
+                    <div class="hero-feature">
+                        <i class="fas fa-couch"></i>
+                        <span class="hero-feature-text">5000+ моделей в каталоге</span>
                     </div>
-                    <h3 class="advantage-title">Сборка на месте</h3>
-                    <p class="advantage-text">Профессиональная сборка нашими мастерами. Гарантия на сборку 2 года</p>
-                </div>
-                <div class="advantage-card">
-                    <div class="advantage-icon">
-                        <i class="fas fa-check-circle"></i>
-                    </div>
-                    <h3 class="advantage-title">Гарантия качества</h3>
-                    <p class="advantage-text">На всю продукцию предоставляется гарантия от 1 до 5 лет. Используем только экологичные материалы</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Каталог с параллаксом -->
-    <section id="catalog" class="catalog parallax-section">
-        <div class="parallax-bg catalog-bg"></div>
-        <div class="container">
-            <h2 class="section-title">Категории мебели</h2>
-            <div class="catalog-grid">
-                <div class="catalog-card">
-                    <div class="catalog-card-image" style="background-image: url('images/living-room.jpg');"></div>
-                    <div class="catalog-card-overlay"></div>
-                    <div class="catalog-card-content">
-                        <h3 class="catalog-card-title">Гостиные</h3>
-                        <p>Диваны, кресла, стенки, ТВ-тумбы</p>
-                        <button class="catalog-card-btn" data-category="living-room">
-                            Посмотреть <i class="fas fa-arrow-right"></i>
-                        </button>
+                    <div class="hero-feature">
+                        <i class="fas fa-percentage"></i>
+                        <span class="hero-feature-text">Скидки до 50% на коллекции</span>
                     </div>
                 </div>
-                <div class="catalog-card">
-                    <div class="catalog-card-image" style="background-image: url('images/bedroom.jpg');"></div>
-                    <div class="catalog-card-overlay"></div>
-                    <div class="catalog-card-content">
-                        <h3 class="catalog-card-title">Спальни</h3>
-                        <p>Кровати, шкафы, комоды, тумбы</p>
-                        <button class="catalog-card-btn" data-category="bedroom">
-                            Посмотреть <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="catalog-card">
-                    <div class="catalog-card-image" style="background-image: url('images/kitchen.jpg');"></div>
-                    <div class="catalog-card-overlay"></div>
-                    <div class="catalog-card-content">
-                        <h3 class="catalog-card-title">Кухни</h3>
-                        <p>Кухонные гарнитуры, столы, стулья</p>
-                        <button class="catalog-card-btn" data-category="kitchen">
-                            Посмотреть <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="catalog-card">
-                    <div class="catalog-card-image" style="background-image: url('images/office.jpg');"></div>
-                    <div class="catalog-card-overlay"></div>
-                    <div class="catalog-card-content">
-                        <h3 class="catalog-card-title">Офис</h3>
-                        <p>Офисные кресла, столы, шкафы</p>
-                        <button class="catalog-card-btn" data-category="office">
-                            Посмотреть <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="catalog-card">
-                    <div class="catalog-card-image" style="background-image: url('images/kids-room.jpg');"></div>
-                    <div class="catalog-card-overlay"></div>
-                    <div class="catalog-card-content">
-                        <h3 class="catalog-card-title">Детская</h3>
-                        <p>Кровати, столы, шкафы, игровые зоны</p>
-                        <button class="catalog-card-btn" data-category="kids-room">
-                            Посмотреть <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="catalog-card">
-                    <div class="catalog-card-image" style="background-image: url('images/sofa.jpg');"></div>
-                    <div class="catalog-card-overlay"></div>
-                    <div class="catalog-card-content">
-                        <h3 class="catalog-card-title">Мягкая мебель</h3>
-                        <p>Диваны, кресла, пуфы, кровати с мягкой спинкой</p>
-                        <button class="catalog-card-btn" data-category="sofa">
-                            Посмотреть <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
+                
+                <div class="hero-buttons">
+                    <a href="#sales" class="btn btn-sale">
+                        <i class="fas fa-fire"></i>
+                        Смотреть акции
+                    </a>
+                    <a href="#categories" class="btn btn-primary">
+                        <i class="fas fa-th-large"></i>
+                        Выбрать мебель
+                    </a>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Контакты с параллаксом -->
-    <section id="contacts" class="contacts parallax-section">
-        <div class="parallax-bg contacts-bg"></div>
+    <!-- Акции и скидки -->
+    <section id="sales" class="sales">
+        <div class="floating-shape shape-3"></div>
         <div class="container">
-            <h2 class="section-title">Приходите к нам</h2>
+            <div class="sales-content">
+                <h2 class="section-title">Акции и специальные предложения</h2>
+                <p class="section-subtitle">Только до конца месяца действуют специальные цены на популярные коллекции мебели. Успейте приобрести по выгодной цене!</p>
+                
+                <!-- Карусель для мобильных -->
+                <div class="sales-carousel">
+                    <div class="sales-carousel-track" id="sales-carousel-track">
+                        <!-- Слайды будут добавлены через JS -->
+                    </div>
+                    <div class="sales-carousel-nav" id="sales-carousel-nav">
+                        <!-- Точки навигации будут добавлены через JS -->
+                    </div>
+                </div>
+                
+                <!-- Сетка для десктопа -->
+                <div class="sales-grid">
+                    <div class="sale-card">
+                        <div class="sale-badge">-30%</div>
+                        <div class="sale-card-image" style="background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                            <div class="sale-card-overlay"></div>
+                        </div>
+                        <div class="sale-card-content">
+                            <h3 class="sale-card-title">Гостиные «Европа»</h3>
+                            <p class="sale-card-text">Современные гостиные гарнитуры из натурального дерева. Эргономичный дизайн, мягкие механизмы, большой выбор расцветок.</p>
+                            <div class="sale-card-price">
+                                <span class="sale-card-old-price">от 45 990 ₽</span>
+                                <span class="sale-card-new-price">от 32 190 ₽</span>
+                            </div>
+                            <button class="btn btn-sale" style="width: 100%;">
+                                <i class="fas fa-shopping-cart"></i>
+                                Заказать со скидкой
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="sale-card">
+                        <div class="sale-badge">-25%</div>
+                        <div class="sale-card-image" style="background-image: url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                            <div class="sale-card-overlay"></div>
+                        </div>
+                        <div class="sale-card-content">
+                            <h3 class="sale-card-title">Спальни «Комфорт»</h3>
+                            <p class="sale-card-text">Уютные спальные гарнитуры с ортопедическими матрасами. Натуральные материалы, бесшумная фурнитура, долгий срок службы.</p>
+                            <div class="sale-card-price">
+                                <span class="sale-card-old-price">от 38 500 ₽</span>
+                                <span class="sale-card-new-price">от 28 875 ₽</span>
+                            </div>
+                            <button class="btn btn-sale" style="width: 100%;">
+                                <i class="fas fa-shopping-cart"></i>
+                                Заказать со скидкой
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="sale-card">
+                        <div class="sale-badge">-40%</div>
+                        <div class="sale-card-image" style="background-image: url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                            <div class="sale-card-overlay"></div>
+                        </div>
+                        <div class="sale-card-content">
+                            <h3 class="sale-card-title">Кухни «Престиж»</h3>
+                            <p class="sale-card-text">Функциональные кухонные гарнитуры с современной бытовой техникой. Прочные столешницы, удобное хранение, стильный дизайн.</p>
+                            <div class="sale-card-price">
+                                <span class="sale-card-old-price">от 67 900 ₽</span>
+                                <span class="sale-card-new-price">от 40 740 ₽</span>
+                            </div>
+                            <button class="btn btn-sale" style="width: 100%;">
+                                <i class="fas fa-shopping-cart"></i>
+                                Заказать со скидкой
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sales-all">
+                    <a href="#categories" class="btn btn-primary">
+                        <i class="fas fa-list"></i>
+                        Смотреть все категории
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Категории товаров -->
+    <section id="categories" class="categories">
+        <div class="container">
+            <div class="categories-content">
+                <h2 class="section-title">Категории мебели</h2>
+                <p class="section-subtitle">Выберите мебель для любого помещения. В нашем каталоге представлены лучшие модели от проверенных производителей.</p>
+                
+                <div class="categories-grid">
+                    <div class="category-card">
+                        <div class="category-card-image" style="background-image: url('images/living-room.jpg');"></div>
+                        <div class="category-card-overlay"></div>
+                        <div class="category-card-content">
+                            <h3 class="category-card-title">Гостиные</h3>
+                            <div class="category-card-count">Более 1200 моделей</div>
+                            <button class="category-card-btn" data-category="living-room">
+                                Смотреть
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-card-image" style="background-image: url('images/bedroom.jpg');"></div>
+                        <div class="category-card-overlay"></div>
+                        <div class="category-card-content">
+                            <h3 class="category-card-title">Спальни</h3>
+                            <div class="category-card-count">Более 800 моделей</div>
+                            <button class="category-card-btn" data-category="bedroom">
+                                Смотреть
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-card-image" style="background-image: url('images/kitchen.jpg');"></div>
+                        <div class="category-card-overlay"></div>
+                        <div class="category-card-content">
+                            <h3 class="category-card-title">Кухни</h3>
+                            <div class="category-card-count">Более 600 моделей</div>
+                            <button class="category-card-btn" data-category="kitchen">
+                                Смотреть
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-card-image" style="background-image: url('images/office.jpg');"></div>
+                        <div class="category-card-overlay"></div>
+                        <div class="category-card-content">
+                            <h3 class="category-card-title">Офисная мебель</h3>
+                            <div class="category-card-count">Более 400 моделей</div>
+                            <button class="category-card-btn" data-category="office">
+                                Смотреть
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-card-image" style="background-image: url('images/kids-room.jpg');"></div>
+                        <div class="category-card-overlay"></div>
+                        <div class="category-card-content">
+                            <h3 class="category-card-title">Детская</h3>
+                            <div class="category-card-count">Более 500 моделей</div>
+                            <button class="category-card-btn" data-category="kids-room">
+                                Смотреть
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-card-image" style="background-image: url('images/sofa.jpg');"></div>
+                        <div class="category-card-overlay"></div>
+                        <div class="category-card-content">
+                            <h3 class="category-card-title">Мягкая мебель</h3>
+                            <div class="category-card-count">Более 900 моделей</div>
+                            <button class="category-card-btn" data-category="sofa">
+                                Смотреть
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Преимущества -->
+    <section id="advantages" class="advantages">
+        <div class="container">
+            <div class="advantages-content">
+                <h2 class="section-title">Почему выбирают «Гранд Мебель»</h2>
+                <p class="section-subtitle">Мы заботимся о каждом клиенте и предлагаем лучшие условия для покупки качественной мебели в Нягани.</p>
+                
+                <div class="advantages-grid">
+                    <div class="advantage-card">
+                        <div class="advantage-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h3 class="advantage-title">Качество проверенное временем</h3>
+                        <p class="advantage-text">Работаем с 2010 года. Все изделия проходят многоступенчатый контроль качества.</p>
+                    </div>
+                    
+                    <div class="advantage-card">
+                        <div class="advantage-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3 class="advantage-title">Бесплатная доставка</h3>
+                        <p class="advantage-text">Доставляем мебель по Нягани бесплатно. Аккуратно заносим в квартиру или дом.</p>
+                    </div>
+                    
+                    <div class="advantage-card">
+                        <div class="advantage-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="advantage-title">Профессиональная сборка</h3>
+                        <p class="advantage-text">Наши мастера аккуратно соберут мебель на месте. Гарантия на сборку 2 года.</p>
+                    </div>
+                    
+                    <div class="advantage-card">
+                        <div class="advantage-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <h3 class="advantage-title">Постоянные акции и скидки</h3>
+                        <p class="advantage-text">Регулярно проводим распродажи и предлагаем специальные цены на коллекции.</p>
+                    </div>
+                    
+                    <div class="advantage-card">
+                        <div class="advantage-icon">
+                            <i class="fas fa-couch"></i>
+                        </div>
+                        <h3 class="advantage-title">Широкий ассортимент</h3>
+                        <p class="advantage-text">Более 5000 моделей мебели в наличии и под заказ. Все стили и ценовые категории.</p>
+                    </div>
+                    
+                    <div class="advantage-card">
+                        <div class="advantage-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3 class="advantage-title">Быстрая комплектация</h3>
+                        <p class="advantage-text">Комплектуем заказы в течение 1-3 дней. Срочная доставка при необходимости.</p>
+                    </div>
+                    
+                    <div class="advantage-card">
+                        <div class="advantage-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="advantage-title">Гарантия до 5 лет</h3>
+                        <p class="advantage-text">Предоставляем гарантию от 1 до 5 лет на всю продукцию. Используем сертифицированные материалы.</p>
+                    </div>
+                    
+                    <div class="advantage-card">
+                        <div class="advantage-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3 class="advantage-title">Консультация дизайнера</h3>
+                        <p class="advantage-text">Бесплатная консультация дизайнера. Поможем подобрать мебель под ваш интерьер.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Контакты -->
+    <section id="contacts" class="contacts">
+        <div class="container">
             <div class="contacts-content">
                 <div class="contacts-info">
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 50px;">Приходите к нам в гости</h2>
+                    
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h3>Адрес</h3>
-                            <p>ул. Чернышова, 5Г, Нягань, ХМАО</p>
-                            <p>Торговый комплекс "Мебельград", 2 этаж</p>
+                        <div class="contact-item-content">
+                            <h3>Адрес магазина</h3>
+                            <p>ул. Чернышова, 5Г, Нягань, ХМАО<br>
+                            Торговый комплекс "Мебельград", 2 этаж</p>
                         </div>
                     </div>
+                    
                     <div class="contact-item">
                         <i class="fas fa-phone-alt"></i>
-                        <div>
-                            <h3>Телефон</h3>
-                            <p>+7 (982) 415-77-75</p>
-                            <p>+7 (34672) 5-55-55 (офис)</p>
+                        <div class="contact-item-content">
+                            <h3>Телефоны для связи</h3>
+                            <p>+7 (982) 415-77-75 (WhatsApp, Telegram)<br>
+                            +7 (34672) 5-55-55 (стационарный)</p>
                         </div>
                     </div>
+                    
                     <div class="contact-item">
                         <i class="fas fa-clock"></i>
-                        <div>
+                        <div class="contact-item-content">
                             <h3>Время работы</h3>
-                            <p>Пн-Пт: 10:00 - 19:00</p>
-                            <p>Сб-Вс: 10:00 - 17:00</p>
+                            <p>Понедельник - Пятница: 10:00 - 19:00<br>
+                            Суббота - Воскресенье: 10:00 - 17:00<br>
+                            Без перерывов</p>
                         </div>
                     </div>
-                    <a href="tel:+79824157775" class="btn btn-primary contact-btn">Позвонить сейчас</a>
+                    
+                    <a href="tel:+79824157775" class="btn btn-primary" style="padding: 20px 30px; font-size: 18px;">
+                        <i class="fas fa-phone-alt"></i>
+                        Позвонить сейчас
+                    </a>
                 </div>
+                
                 <div class="contacts-map">
                     <div class="map-container">
                         <div class="map-content">
@@ -1607,8 +1992,8 @@
                                 <i class="fas fa-map-marked-alt"></i>
                             </div>
                             <h3 class="map-title">Мы на карте</h3>
-                            <p class="map-address">ул. Чернышова, 5Г, Нягань</p>
-                            <p>Торговый комплекс "Мебельград"</p>
+                            <p class="map-address">ул. Чернышова, 5Г<br>г. Нягань, ХМАО</p>
+                            <p>Торговый комплекс "Мебельград"<br>2 этаж, отдел «Гранд Мебель»</p>
                             <p class="map-note">Для навигации используйте Яндекс.Карты или Google Maps</p>
                         </div>
                     </div>
@@ -1617,44 +2002,65 @@
         </div>
     </section>
     
-    <!-- Форма обратной связи с параллаксом -->
-    <section id="feedback" class="feedback parallax-section">
-        <div class="parallax-bg feedback-bg"></div>
+    <!-- Форма обратной связи -->
+    <section class="feedback">
         <div class="container">
             <div class="feedback-content">
-                <div class="feedback-info">
-                    <h2 class="section-title">Остались вопросы? Закажите звонок</h2>
-                    <p>Наши специалисты свяжутся с вами в течение 30 минут и ответят на все вопросы. Подберём оптимальные варианты под ваш бюджет и предпочтения.</p>
-                </div>
+                <h2 class="section-title">Остались вопросы?</h2>
+                <p class="section-subtitle">Заполните форму и наш менеджер свяжется с вами в течение 15 минут для бесплатной консультации</p>
+                
                 <form id="feedback-form" class="feedback-form">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder=" " required>
-                        <label for="name" class="form-label">Ваше имя</label>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder=" " required>
+                            <label for="name" class="form-label">Ваше имя</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" placeholder=" " required>
+                            <label for="phone" class="form-label">Ваш телефон</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <select id="category" name="category" required>
+                                <option value="" selected disabled></option>
+                                <option value="living-room">Гостиные</option>
+                                <option value="bedroom">Спальни</option>
+                                <option value="kitchen">Кухни</option>
+                                <option value="office">Офисная мебель</option>
+                                <option value="kids-room">Детская</option>
+                                <option value="sofa">Мягкая мебель</option>
+                                <option value="other">Другое</option>
+                            </select>
+                            <label for="category" class="form-label">Что вас интересует?</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder=" "></textarea>
+                            <label for="message" class="form-label">Ваш вопрос или комментарий</label>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="tel" id="phone" name="phone" placeholder=" " required>
-                        <label for="phone" class="form-label">Ваш телефон</label>
+                    
+                    <div class="form-submit">
+                        <button type="submit" class="btn btn-primary" style="padding: 20px 50px; font-size: 18px;">
+                            <i class="fas fa-paper-plane"></i>
+                            Отправить заявку
+                        </button>
                     </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" placeholder=" " rows="4"></textarea>
-                        <label for="message" class="form-label">Что вас интересует?</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Заказать консультацию</button>
                 </form>
             </div>
         </div>
     </section>
     
-    <!-- Футер с параллаксом -->
-    <footer class="footer parallax-section">
-        <div class="parallax-bg footer-bg"></div>
+    <!-- Футер -->
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <a href="#" class="footer-logo">
-                        <img src="images/logo.png" alt="Гранд Мебель" class="logo-img" style="height: 40px;">
-                    </a>
-                    <p class="footer-about">Создаём уют в вашем доме с 2010 года. Широкий ассортимент мебели для дома, квартиры и офиса в Нягани.</p>
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="Гранд Мебель" class="footer-logo-img">
+                    </div>
+                    <p class="footer-about">Создаём уют в вашем доме с 2010 года. Широкий ассортимент качественной мебели для дома, квартиры и офиса в Нягани.</p>
                     <div class="social-links">
                         <a href="#" class="social-link" aria-label="Instagram">
                             <i class="fab fa-instagram"></i>
@@ -1670,74 +2076,60 @@
                         </a>
                     </div>
                 </div>
+                
                 <div class="footer-column">
-                    <h3 class="footer-title">Каталог</h3>
+                    <h3 class="footer-title">Категории</h3>
                     <ul class="footer-links">
                         <li><a href="#"><i class="fas fa-chevron-right"></i> Гостиные</a></li>
                         <li><a href="#"><i class="fas fa-chevron-right"></i> Спальни</a></li>
                         <li><a href="#"><i class="fas fa-chevron-right"></i> Кухни</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Офис</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Детская</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Офисная мебель</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Детская мебель</a></li>
                     </ul>
                 </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Компания</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> О нас</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Акции</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Доставка и сборка</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Гарантия</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Контакты</a></li>
+                    </ul>
+                </div>
+                
                 <div class="footer-column">
                     <h3 class="footer-title">Контакты</h3>
                     <div class="footer-contact-item">
                         <i class="fas fa-map-marker-alt"></i>
                         <div class="footer-contact-text">
-                            <p>ул. Чернышова, 5Г</p>
-                            <p>Нягань, ХМАО</p>
+                            ул. Чернышова, 5Г<br>
+                            Нягань, ХМАО
                         </div>
                     </div>
                     <div class="footer-contact-item">
                         <i class="fas fa-phone-alt"></i>
                         <div class="footer-contact-text">
-                            <p>+7 (982) 415-77-75</p>
-                            <p>+7 (34672) 5-55-55</p>
+                            <a href="tel:+79824157775">+7 (982) 415-77-75</a><br>
+                            <a href="tel:+73467255555">+7 (34672) 5-55-55</a>
                         </div>
                     </div>
                     <div class="footer-contact-item">
                         <i class="fas fa-envelope"></i>
                         <div class="footer-contact-text">
-                            <p>info@grand-mebel-nyagan.ru</p>
+                            <a href="mailto:info@grand-mebel-nyagan.ru">info@grand-mebel-nyagan.ru</a>
                         </div>
                     </div>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>© Гранд Мебель, Нягань, 2024. Все права защищены.</p>
+                <p>© 2010-2024 Гранд Мебель, Нягань. Все права защищены.</p>
                 <p>г. Нягань, ул. Чернышова, 5Г, ТК "Мебельград"</p>
             </div>
         </div>
     </footer>
-    
-    <!-- Модальное окно для галереи -->
-    <div id="gallery-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modal-title">Гостиные</h3>
-                <button class="modal-close">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="gallery-grid" id="gallery-grid">
-                    <!-- Галерея будет заполнена через JS -->
-                </div>
-                <div class="modal-actions">
-                    <button class="btn btn-primary" id="modal-consult-btn">Заказать консультацию</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Сообщение об успешной отправке формы -->
-    <div id="success-message" class="success-message">
-        <div class="success-content">
-            <i class="fas fa-check-circle"></i>
-            <h3>Спасибо! Мы скоро вам перезвоним</h3>
-            <p>Наш менеджер свяжется с вами в ближайшее время для уточнения деталей и ответит на все ваши вопросы.</p>
-            <button class="btn btn-primary" id="close-success">Хорошо</button>
-        </div>
-    </div>
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -1785,116 +2177,74 @@
                 const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
                 const scrolled = (window.scrollY / windowHeight) * 100;
                 scrollProgress.style.width = scrolled + '%';
-                
-                // Активация элементов при скролле
-                activateElementsOnScroll();
             });
             
-            // Параллакс эффект
-            function initParallax() {
-                const parallaxElements = document.querySelectorAll('.parallax-bg');
+            // Карусель акций для мобильных
+            function initSalesCarousel() {
+                const carouselTrack = document.getElementById('sales-carousel-track');
+                const carouselNav = document.getElementById('sales-carousel-nav');
+                const salesCards = document.querySelectorAll('.sale-card');
                 
-                window.addEventListener('scroll', function() {
-                    const scrollY = window.scrollY;
+                if (!carouselTrack || !carouselNav || window.innerWidth > 768) return;
+                
+                // Очищаем карусель
+                carouselTrack.innerHTML = '';
+                carouselNav.innerHTML = '';
+                
+                // Создаем слайды
+                salesCards.forEach((card, index) => {
+                    // Слайд
+                    const slide = document.createElement('div');
+                    slide.className = 'sales-carousel-slide';
+                    slide.innerHTML = card.outerHTML;
+                    carouselTrack.appendChild(slide);
                     
-                    parallaxElements.forEach(element => {
-                        const speed = 0.3;
-                        const yPos = -(scrollY * speed);
-                        element.style.transform = `translate3d(0, ${yPos}px, 0) scale(1.1)`;
+                    // Точка навигации
+                    const dot = document.createElement('div');
+                    dot.className = 'sales-carousel-dot';
+                    if (index === 0) dot.classList.add('active');
+                    dot.dataset.index = index;
+                    dot.addEventListener('click', () => goToSlide(index));
+                    carouselNav.appendChild(dot);
+                });
+                
+                let currentSlide = 0;
+                const slideCount = salesCards.length;
+                
+                function goToSlide(index) {
+                    currentSlide = index;
+                    carouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+                    
+                    // Обновляем активную точку
+                    document.querySelectorAll('.sales-carousel-dot').forEach((dot, i) => {
+                        dot.classList.toggle('active', i === currentSlide);
                     });
-                });
-            }
-            
-            initParallax();
-            
-            // Активация элементов при скролле
-            function activateElementsOnScroll() {
-                const elements = document.querySelectorAll('.advantage-card, .catalog-card, .contact-item, .contact-btn, .contacts-map, .feedback-info, .feedback-form');
-                
-                elements.forEach(element => {
-                    const elementTop = element.getBoundingClientRect().top;
-                    const elementVisible = 150;
-                    
-                    if (elementTop < window.innerHeight - elementVisible) {
-                        element.classList.add('visible');
-                    }
-                });
-            }
-            
-            // Активируем элементы при загрузке
-            setTimeout(activateElementsOnScroll, 500);
-            
-            // Данные для галереи с пользовательскими изображениями
-            const galleryData = {
-                'living-room': {
-                    title: 'Гостиные',
-                    images: [
-                        'images/living-room-1.jpg',
-                        'images/living-room-2.jpg',
-                        'images/living-room-3.jpg',
-                        'images/living-room-4.jpg',
-                        'images/living-room-5.jpg',
-                        'images/living-room-6.jpg'
-                    ]
-                },
-                'bedroom': {
-                    title: 'Спальни',
-                    images: [
-                        'images/bedroom-1.jpg',
-                        'images/bedroom-2.jpg',
-                        'images/bedroom-3.jpg',
-                        'images/bedroom-4.jpg',
-                        'images/bedroom-5.jpg',
-                        'images/bedroom-6.jpg'
-                    ]
-                },
-                'kitchen': {
-                    title: 'Кухни',
-                    images: [
-                        'images/kitchen-1.jpg',
-                        'images/kitchen-2.jpg',
-                        'images/kitchen-3.jpg',
-                        'images/kitchen-4.jpg',
-                        'images/kitchen-5.jpg',
-                        'images/kitchen-6.jpg'
-                    ]
-                },
-                'office': {
-                    title: 'Офисная мебель',
-                    images: [
-                        'images/office-1.jpg',
-                        'images/office-2.jpg',
-                        'images/office-3.jpg',
-                        'images/office-4.jpg',
-                        'images/office-5.jpg',
-                        'images/office-6.jpg'
-                    ]
-                },
-                'kids-room': {
-                    title: 'Детские комнаты',
-                    images: [
-                        'images/kids-room-1.jpg',
-                        'images/kids-room-2.jpg',
-                        'images/kids-room-3.jpg',
-                        'images/kids-room-4.jpg',
-                        'images/kids-room-5.jpg',
-                        'images/kids-room-6.jpg'
-                    ]
-                },
-                'sofa': {
-                    title: 'Мягкая мебель',
-                    images: [
-                        'images/sofa-1.jpg',
-                        'images/sofa-2.jpg',
-                        'images/sofa-3.jpg',
-                        'images/sofa-4.jpg',
-                        'images/sofa-5.jpg',
-                        'images/sofa-6.jpg'
-                    ]
                 }
-            };
+                
+                // Автопрокрутка
+                let autoSlideInterval = setInterval(() => {
+                    currentSlide = (currentSlide + 1) % slideCount;
+                    goToSlide(currentSlide);
+                }, 5000);
+                
+                // Останавливаем автопрокрутку при наведении
+                carouselTrack.addEventListener('mouseenter', () => {
+                    clearInterval(autoSlideInterval);
+                });
+                
+                carouselTrack.addEventListener('mouseleave', () => {
+                    autoSlideInterval = setInterval(() => {
+                        currentSlide = (currentSlide + 1) % slideCount;
+                        goToSlide(currentSlide);
+                    }, 5000);
+                });
+            }
             
-            // Проверка наличия пользовательских изображений
+            // Инициализация карусели при загрузке и изменении размера окна
+            initSalesCarousel();
+            window.addEventListener('resize', initSalesCarousel);
+            
+            // Проверка изображений
             function checkImageAvailability(url, callback) {
                 const img = new Image();
                 img.onload = function() {
@@ -1906,111 +2256,53 @@
                 img.src = url;
             }
             
-            // Использовать резервные изображения при отсутствии пользовательских
-            function getImageUrl(baseUrl, fallbackUrl) {
-                return new Promise((resolve) => {
-                    checkImageAvailability(baseUrl, (exists) => {
+            // Установка пользовательских изображений для категорий
+            const categoryImages = [
+                { element: document.querySelector('.category-card:nth-child(1) .category-card-image'), url: 'images/living-room.jpg', fallback: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+                { element: document.querySelector('.category-card:nth-child(2) .category-card-image'), url: 'images/bedroom.jpg', fallback: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+                { element: document.querySelector('.category-card:nth-child(3) .category-card-image'), url: 'images/kitchen.jpg', fallback: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+                { element: document.querySelector('.category-card:nth-child(4) .category-card-image'), url: 'images/office.jpg', fallback: 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+                { element: document.querySelector('.category-card:nth-child(5) .category-card-image'), url: 'images/kids-room.jpg', fallback: 'https://images.unsplash.com/photo-1564078516393-cf04bd966897?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
+                { element: document.querySelector('.category-card:nth-child(6) .category-card-image'), url: 'images/sofa.jpg', fallback: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }
+            ];
+            
+            categoryImages.forEach(category => {
+                if (category.element) {
+                    checkImageAvailability(category.url, (exists) => {
                         if (exists) {
-                            resolve(baseUrl);
+                            category.element.style.backgroundImage = `url('${category.url}')`;
                         } else {
-                            // Если изображение не найдено, используем резервное
-                            console.log(`Изображение ${baseUrl} не найдено, используем резервное`);
-                            resolve(fallbackUrl);
+                            console.log(`Изображение категории ${category.url} не найдено, используем резервное`);
+                            category.element.style.backgroundImage = `url('${category.fallback}')`;
                         }
                     });
-                });
-            }
-            
-            // Открытие модального окна галереи
-            const catalogButtons = document.querySelectorAll('.catalog-card-btn');
-            const modal = document.getElementById('gallery-modal');
-            const modalTitle = document.getElementById('modal-title');
-            const galleryGrid = document.getElementById('gallery-grid');
-            const modalClose = document.querySelector('.modal-close');
-            const modalConsultBtn = document.getElementById('modal-consult-btn');
-            
-            catalogButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const category = this.getAttribute('data-category');
-                    const data = galleryData[category];
-                    
-                    if (data) {
-                        modalTitle.textContent = data.title;
-                        galleryGrid.innerHTML = '';
-                        
-                        // Массив резервных изображений (Unsplash)
-                        const fallbackImages = [
-                            'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                            'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                            'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                            'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                            'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                            'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-                        ];
-                        
-                        // Создаем элементы галереи с проверкой наличия изображений
-                        data.images.forEach((imageUrl, index) => {
-                            const galleryItem = document.createElement('div');
-                            galleryItem.className = 'gallery-item';
-                            
-                            // Проверяем наличие пользовательского изображения
-                            checkImageAvailability(imageUrl, (exists) => {
-                                if (exists) {
-                                    galleryItem.style.backgroundImage = `url('${imageUrl}')`;
-                                } else {
-                                    // Используем резервное изображение
-                                    const fallbackIndex = index % fallbackImages.length;
-                                    galleryItem.style.backgroundImage = `url('${fallbackImages[fallbackIndex]}')`;
-                                }
-                            });
-                            
-                            const overlay = document.createElement('div');
-                            overlay.className = 'gallery-item-overlay';
-                            overlay.innerHTML = '<i class="fas fa-search-plus"></i>';
-                            galleryItem.appendChild(overlay);
-                            
-                            galleryGrid.appendChild(galleryItem);
-                        });
-                        
-                        modal.classList.add('active');
-                        document.body.style.overflow = 'hidden';
-                    }
-                });
-            });
-            
-            // Закрытие модального окна
-            if (modalClose) {
-                modalClose.addEventListener('click', function() {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                });
-            }
-            
-            // Закрытие модального окна при клике вне его
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
                 }
             });
             
-            // Кнопка "Заказать консультацию" в модальном окне
-            if (modalConsultBtn) {
-                modalConsultBtn.addEventListener('click', function() {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                    
-                    // Прокрутка к форме обратной связи
-                    document.querySelector('#feedback-form').scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            }
+            // Проверка основного баннера
+            const heroSection = document.querySelector('.hero');
+            checkImageAvailability('images/vhod_grup.png', (exists) => {
+                if (!exists) {
+                    console.log('Основной баннер images/vhod_grup.png не найден');
+                    heroSection.style.background = 'linear-gradient(135deg, var(--color-background) 0%, #fcf3e9 100%)';
+                    heroSection.style.backgroundImage = 'none';
+                }
+            });
+            
+            // Проверка логотипа
+            const logoImg = document.querySelector('.logo-img');
+            const footerLogoImg = document.querySelector('.footer-logo-img');
+            
+            checkImageAvailability('images/logo.png', (exists) => {
+                if (!exists) {
+                    console.log('Логотип images/logo.png не найден');
+                    if (logoImg) logoImg.style.display = 'none';
+                    if (footerLogoImg) footerLogoImg.style.display = 'none';
+                }
+            });
             
             // Форма обратной связи
             const feedbackForm = document.getElementById('feedback-form');
-            const successMessage = document.getElementById('success-message');
-            const closeSuccessBtn = document.getElementById('close-success');
             
             if (feedbackForm) {
                 feedbackForm.addEventListener('submit', function(e) {
@@ -2020,6 +2312,7 @@
                     const formData = {
                         name: document.getElementById('name').value,
                         phone: document.getElementById('phone').value,
+                        category: document.getElementById('category').value,
                         message: document.getElementById('message').value,
                         date: new Date().toLocaleString()
                     };
@@ -2033,60 +2326,53 @@
                     // Сброс плавающих лейблов
                     const labels = document.querySelectorAll('.form-label');
                     labels.forEach(label => {
-                        label.style.top = '18px';
-                        label.style.fontSize = '16px';
+                        label.style.top = '20px';
+                        label.style.fontSize = '17px';
                         label.style.color = 'var(--color-text-light)';
                     });
                     
                     // Показ сообщения об успехе
-                    successMessage.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
-            }
-            
-            // Закрытие сообщения об успехе
-            if (closeSuccessBtn) {
-                closeSuccessBtn.addEventListener('click', function() {
-                    successMessage.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                });
-            }
-            
-            // Закрытие сообщения при клике вне его
-            if (successMessage) {
-                successMessage.addEventListener('click', function(e) {
-                    if (e.target === successMessage) {
-                        successMessage.classList.remove('active');
-                        document.body.style.overflow = 'auto';
-                    }
+                    alert('Спасибо! Ваша заявка принята. Мы свяжемся с вами в течение 15 минут.');
                 });
             }
             
             // Плавающие лейблы формы
-            const formInputs = document.querySelectorAll('.form-group input, .form-group textarea');
+            const formInputs = document.querySelectorAll('.form-group input, .form-group textarea, .form-group select');
             
             formInputs.forEach(input => {
                 const label = input.nextElementSibling;
                 
                 input.addEventListener('focus', function() {
-                    label.style.top = '-10px';
-                    label.style.fontSize = '14px';
+                    label.style.top = '-12px';
+                    label.style.fontSize = '15px';
                     label.style.color = 'var(--color-primary)';
+                    label.style.fontWeight = '500';
                 });
                 
                 input.addEventListener('blur', function() {
-                    if (!this.value) {
-                        label.style.top = '18px';
-                        label.style.fontSize = '16px';
+                    if (!this.value && this.tagName !== 'SELECT') {
+                        label.style.top = '20px';
+                        label.style.fontSize = '17px';
                         label.style.color = 'var(--color-text-light)';
+                        label.style.fontWeight = 'normal';
                     }
                 });
                 
-                // Проверка при загрузке страницы
-                if (input.value) {
-                    label.style.top = '-10px';
-                    label.style.fontSize = '14px';
-                    label.style.color = 'var(--color-primary)';
+                // Для select
+                if (input.tagName === 'SELECT') {
+                    input.addEventListener('change', function() {
+                        if (this.value) {
+                            label.style.top = '-12px';
+                            label.style.fontSize = '15px';
+                            label.style.color = 'var(--color-primary)';
+                            label.style.fontWeight = '500';
+                        } else {
+                            label.style.top = '20px';
+                            label.style.fontSize = '17px';
+                            label.style.color = 'var(--color-text-light)';
+                            label.style.fontWeight = 'normal';
+                        }
+                    });
                 }
             });
             
@@ -2101,65 +2387,31 @@
                         e.preventDefault();
                         
                         window.scrollTo({
-                            top: targetElement.offsetTop - 80,
+                            top: targetElement.offsetTop - 90,
                             behavior: 'smooth'
                         });
                     }
                 });
             });
             
-            // Проверка наличия пользовательских изображений для категорий
-            const categoryImages = [
-                { element: document.querySelector('.catalog-card:nth-child(1) .catalog-card-image'), url: 'images/living-room.jpg', fallback: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
-                { element: document.querySelector('.catalog-card:nth-child(2) .catalog-card-image'), url: 'images/bedroom.jpg', fallback: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
-                { element: document.querySelector('.catalog-card:nth-child(3) .catalog-card-image'), url: 'images/kitchen.jpg', fallback: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
-                { element: document.querySelector('.catalog-card:nth-child(4) .catalog-card-image'), url: 'images/office.jpg', fallback: 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
-                { element: document.querySelector('.catalog-card:nth-child(5) .catalog-card-image'), url: 'images/kids-room.jpg', fallback: 'https://images.unsplash.com/photo-1564078516393-cf04bd966897?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
-                { element: document.querySelector('.catalog-card:nth-child(6) .catalog-card-image'), url: 'images/sofa.jpg', fallback: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }
-            ];
+            // Кнопки категорий
+            const categoryButtons = document.querySelectorAll('.category-card-btn');
             
-            // Проверяем и устанавливаем изображения для категорий
-            categoryImages.forEach(category => {
-                if (category.element) {
-                    checkImageAvailability(category.url, (exists) => {
-                        if (exists) {
-                            category.element.style.backgroundImage = `url('${category.url}')`;
-                        } else {
-                            console.log(`Изображение категории ${category.url} не найдено, используем резервное`);
-                            category.element.style.backgroundImage = `url('${category.fallback}')`;
-                        }
-                    });
-                }
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    alert(`Открывается галерея категории: ${category}. В реальном сайте здесь будет переход на страницу категории.`);
+                });
             });
             
-            // Проверка наличия главного баннера
-            const heroBg = document.querySelector('.hero-bg');
-            checkImageAvailability('images/vhod_grup.png', (exists) => {
-                if (!exists) {
-                    console.log('Основной баннер images/vhod_grup.png не найден, используем резервное изображение');
-                    heroBg.style.backgroundImage = `url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80')`;
-                }
+            // Кнопки акций
+            const saleButtons = document.querySelectorAll('.sale-card .btn');
+            
+            saleButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    alert('Товар добавлен в корзину! В реальном сайте здесь будет функционал корзины.');
+                });
             });
-            
-            // Проверка наличия логотипа
-            const logoImg = document.querySelector('.logo-img');
-            checkImageAvailability('images/logo.png', (exists) => {
-                if (!exists) {
-                    console.log('Логотип images/logo.png не найден, используем текстовый логотип');
-                    // Скрываем изображение и показываем текстовый логотип
-                    if (logoImg) {
-                        logoImg.style.display = 'none';
-                    }
-                }
-            });
-            
-            // Инициализация карты (заглушка)
-            const initMap = () => {
-                console.log('Карта инициализирована. В реальном проекте здесь будет код для Яндекс.Карт или Google Maps.');
-            };
-            
-            // Вызов функции инициализации карты
-            initMap();
         });
     </script>
 </body>
