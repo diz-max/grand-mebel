@@ -3,26 +3,1405 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Гранд Мебель в Нягани | Мебель для дома и офиса</title>
+    <title>Гранд Мебель | Мебель для дома и офиса в Нягани</title>
     <meta name="description" content="Широкий ассортимент мебели для дома, квартиры и офиса в Нягани. Бесплатная консультация, доставка и сборка.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛋️</text></svg>">
+    <style>
+        /* Глобальные переменные и сброс стилей */
+        :root {
+            --color-primary: #1a3c2a;
+            --color-primary-light: #2a5c3d;
+            --color-secondary: #c9a16e;
+            --color-accent: #8b4513;
+            --color-background: #f9f7f4;
+            --color-surface: #ffffff;
+            --color-text: #2c2c2c;
+            --color-text-light: #666666;
+            --color-border: #e8e4dd;
+            
+            --font-primary: 'Inter', sans-serif;
+            --font-secondary: 'Playfair Display', serif;
+            
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
+            
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            
+            --transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+            --transition-fast: all 0.2s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-background);
+            overflow-x: hidden;
+        }
+        
+        .parallax-section {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1;
+            will-change: transform;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 70px 0;
+            }
+        }
+        
+        /* Кнопки */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 36px;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-primary);
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: -100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover::after {
+            left: 100%;
+        }
+        
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--color-primary-light);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(26, 60, 42, 0.05);
+            transform: translateY(-3px);
+        }
+        
+        /* Заголовки */
+        .section-title {
+            font-family: var(--font-secondary);
+            font-size: 42px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--color-text);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--color-secondary);
+        }
+        
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: 36px;
+                margin-bottom: 50px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 32px;
+                margin-bottom: 40px;
+            }
+        }
+        
+        /* Шапка */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        .header.scrolled {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.98);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+        
+        .header.scrolled .header-content {
+            padding: 10px 0;
+        }
+        
+        .logo {
+            font-family: var(--font-secondary);
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--color-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            color: var(--color-secondary);
+        }
+        
+        .nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 500;
+            font-size: 16px;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-primary);
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--color-primary);
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--color-primary);
+        }
+        
+        @media (max-width: 992px) {
+            .nav-list {
+                gap: 25px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-list {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background-color: var(--color-surface);
+                padding: 30px;
+                box-shadow: var(--shadow-md);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+                z-index: 999;
+            }
+            
+            .nav-list.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .nav-list li {
+                margin-bottom: 20px;
+            }
+            
+            .header.scrolled .nav-list {
+                top: 70px;
+            }
+        }
+        
+        /* Герой-секция с параллаксом */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            margin-top: 80px;
+        }
+        
+        .hero-bg {
+            background-image: url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            transform: translateZ(-1px) scale(1.2);
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-family: var(--font-secondary);
+            font-size: 64px;
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.3s;
+        }
+        
+        .hero-subtitle {
+            font-size: 22px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.5s;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.7s;
+        }
+        
+        @media (max-width: 1200px) {
+            .hero-title {
+                font-size: 56px;
+            }
+            
+            .hero-subtitle {
+                font-size: 20px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 48px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 600px;
+            }
+            
+            .hero-title {
+                font-size: 40px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .hero-buttons .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .hero-subtitle {
+                font-size: 16px;
+            }
+        }
+        
+        /* Преимущества с параллаксом */
+        .advantages {
+            background-color: var(--color-background);
+        }
+        
+        .advantages-bg {
+            background-image: url('https://images.unsplash.com/photo-1598928506311-c55ded91a20c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            opacity: 0.03;
+        }
+        
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        
+        @media (max-width: 1200px) {
+            .advantages-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .advantages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .advantage-card {
+            background-color: var(--color-surface);
+            border-radius: var(--radius-md);
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .advantage-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .advantage-card:nth-child(1) { transition-delay: 0.1s; }
+        .advantage-card:nth-child(2) { transition-delay: 0.2s; }
+        .advantage-card:nth-child(3) { transition-delay: 0.3s; }
+        .advantage-card:nth-child(4) { transition-delay: 0.4s; }
+        
+        .advantage-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .advantage-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            font-size: 32px;
+            transition: var(--transition);
+        }
+        
+        .advantage-card:hover .advantage-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .advantage-title {
+            font-family: var(--font-secondary);
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--color-text);
+        }
+        
+        .advantage-text {
+            color: var(--color-text-light);
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        
+        /* Каталог с параллаксом */
+        .catalog {
+            background-color: var(--color-surface);
+        }
+        
+        .catalog-bg {
+            background-image: url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            opacity: 0.03;
+        }
+        
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        @media (max-width: 1200px) {
+            .catalog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .catalog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .catalog-card {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(40px);
+            position: relative;
+            height: 350px;
+        }
+        
+        .catalog-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .catalog-card:nth-child(1) { transition-delay: 0.1s; }
+        .catalog-card:nth-child(2) { transition-delay: 0.2s; }
+        .catalog-card:nth-child(3) { transition-delay: 0.3s; }
+        .catalog-card:nth-child(4) { transition-delay: 0.4s; }
+        .catalog-card:nth-child(5) { transition-delay: 0.5s; }
+        .catalog-card:nth-child(6) { transition-delay: 0.6s; }
+        
+        .catalog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .catalog-card-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: var(--transition);
+            z-index: 1;
+        }
+        
+        .catalog-card:hover .catalog-card-image {
+            transform: scale(1.05);
+        }
+        
+        .catalog-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+            z-index: 2;
+        }
+        
+        .catalog-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            color: white;
+            z-index: 3;
+        }
+        
+        .catalog-card-title {
+            font-family: var(--font-secondary);
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .catalog-card-btn {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 10px 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .catalog-card-btn:hover {
+            background-color: white;
+            color: var(--color-primary);
+        }
+        
+        /* Контакты с параллаксом */
+        .contacts {
+            background-color: var(--color-background);
+        }
+        
+        .contacts-bg {
+            background-image: url('https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            opacity: 0.03;
+        }
+        
+        .contacts-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        
+        @media (max-width: 992px) {
+            .contacts-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+        }
+        
+        .contacts-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        
+        .contact-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .contact-item:nth-child(1) { transition-delay: 0.1s; }
+        .contact-item:nth-child(2) { transition-delay: 0.2s; }
+        .contact-item:nth-child(3) { transition-delay: 0.3s; }
+        
+        .contact-item i {
+            font-size: 28px;
+            color: var(--color-primary);
+            margin-top: 5px;
+        }
+        
+        .contact-item h3 {
+            font-family: var(--font-secondary);
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--color-text);
+        }
+        
+        .contact-item p {
+            color: var(--color-text-light);
+            font-size: 17px;
+        }
+        
+        .contact-btn {
+            margin-top: 10px;
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        
+        .contact-btn.visible {
+            opacity: 1;
+            transform: translateX(0);
+            transition-delay: 0.4s;
+        }
+        
+        .contacts-map {
+            height: 500px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            transform: translateX(30px);
+        }
+        
+        .contacts-map.visible {
+            opacity: 1;
+            transform: translateX(0);
+            transition-delay: 0.5s;
+        }
+        
+        .map-container {
+            height: 100%;
+            width: 100%;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .map-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+            opacity: 0.05;
+            z-index: 1;
+        }
+        
+        .map-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .map-icon {
+            font-size: 70px;
+            color: var(--color-primary);
+            margin-bottom: 20px;
+            opacity: 0.7;
+        }
+        
+        .map-title {
+            font-family: var(--font-secondary);
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--color-text);
+        }
+        
+        .map-address {
+            font-size: 18px;
+            color: var(--color-text-light);
+            margin-bottom: 10px;
+        }
+        
+        .map-note {
+            font-size: 14px;
+            color: var(--color-text-light);
+            margin-top: 20px;
+            opacity: 0.7;
+        }
+        
+        /* Форма обратной связи с параллаксом */
+        .feedback {
+            background-color: var(--color-surface);
+        }
+        
+        .feedback-bg {
+            background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            opacity: 0.03;
+        }
+        
+        .feedback-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .feedback-info {
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .feedback-info.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.2s;
+        }
+        
+        .feedback-info p {
+            color: var(--color-text-light);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .feedback-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .feedback-form.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.4s;
+        }
+        
+        .feedback-form .form-group:nth-child(3) {
+            grid-column: span 2;
+        }
+        
+        .feedback-form button {
+            grid-column: span 2;
+            justify-self: center;
+            margin-top: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .feedback-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .feedback-form .form-group:nth-child(3),
+            .feedback-form button {
+                grid-column: 1;
+            }
+        }
+        
+        .form-group {
+            position: relative;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 18px 20px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-primary);
+            font-size: 16px;
+            transition: var(--transition);
+            background-color: white;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(26, 60, 42, 0.1);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+        
+        .form-label {
+            position: absolute;
+            top: 18px;
+            left: 20px;
+            color: var(--color-text-light);
+            transition: var(--transition);
+            pointer-events: none;
+            background-color: white;
+            padding: 0 5px;
+        }
+        
+        .form-group input:focus + .form-label,
+        .form-group input:not(:placeholder-shown) + .form-label,
+        .form-group textarea:focus + .form-label,
+        .form-group textarea:not(:placeholder-shown) + .form-label {
+            top: -10px;
+            font-size: 14px;
+            color: var(--color-primary);
+        }
+        
+        /* Футер */
+        .footer {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 80px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-bg {
+            background-image: url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            opacity: 0.05;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        @media (max-width: 992px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+        }
+        
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        @media (max-width: 768px) {
+            .footer-column {
+                align-items: center;
+            }
+        }
+        
+        .footer-logo {
+            font-family: var(--font-secondary);
+            font-size: 28px;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .footer-about {
+            opacity: 0.8;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .footer-title {
+            font-family: var(--font-secondary);
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: white;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--color-secondary);
+        }
+        
+        @media (max-width: 768px) {
+            .footer-title::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .footer-links a {
+                justify-content: center;
+            }
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .footer-contact-item {
+                justify-content: center;
+            }
+        }
+        
+        .footer-contact-item i {
+            color: var(--color-secondary);
+            font-size: 18px;
+            margin-top: 3px;
+        }
+        
+        .footer-contact-text {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .social-links {
+                justify-content: center;
+            }
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background-color: var(--color-secondary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 15px;
+            opacity: 0.7;
+        }
+        
+        /* Модальное окно галереи */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background-color: var(--color-surface);
+            border-radius: var(--radius-lg);
+            max-width: 1000px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: var(--transition);
+        }
+        
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 30px;
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        .modal-header h3 {
+            font-family: var(--font-secondary);
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--color-text);
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--color-text-light);
+            transition: var(--transition);
+            line-height: 1;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .modal-close:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            color: var(--color-primary);
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        @media (max-width: 992px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .gallery-item {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .gallery-item-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-item-overlay i {
+            color: white;
+            font-size: 30px;
+        }
+        
+        .modal-actions {
+            text-align: center;
+        }
+        
+        /* Сообщение об успешной отправке */
+        .success-message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .success-message.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .success-content {
+            background-color: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: 50px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            transform: scale(0.9);
+            transition: var(--transition);
+        }
+        
+        .success-message.active .success-content {
+            transform: scale(1);
+        }
+        
+        .success-content i {
+            font-size: 70px;
+            color: var(--color-primary);
+            margin-bottom: 25px;
+        }
+        
+        .success-content h3 {
+            font-family: var(--font-secondary);
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--color-text);
+        }
+        
+        .success-content p {
+            color: var(--color-text-light);
+            margin-bottom: 30px;
+            font-size: 17px;
+        }
+        
+        /* Анимации */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Декоративные элементы */
+        .floating-element {
+            position: absolute;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .floating-element.shape-1 {
+            top: 10%;
+            left: 5%;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(26, 60, 42, 0.1) 0%, rgba(201, 161, 110, 0.1) 100%);
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        .floating-element.shape-2 {
+            bottom: 15%;
+            right: 8%;
+            width: 150px;
+            height: 150px;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            background: linear-gradient(135deg, rgba(201, 161, 110, 0.1) 0%, rgba(26, 60, 42, 0.1) 100%);
+            animation: float 25s infinite ease-in-out reverse;
+        }
+        
+        .floating-element.shape-3 {
+            top: 40%;
+            right: 12%;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(26, 60, 42, 0.08) 0%, rgba(201, 161, 110, 0.08) 100%);
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-20px) rotate(120deg);
+            }
+            66% {
+                transform: translateY(10px) rotate(240deg);
+            }
+        }
+        
+        /* Прогресс бар прокрутки */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+    </style>
 </head>
 <body>
-    <!-- Шапка сайта -->
+    <!-- Прогресс бар прокрутки -->
+    <div class="scroll-progress"></div>
+    
+    <!-- Шапка -->
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <a href="#" class="logo">Гранд Мебель</a>
+                <a href="#" class="logo">
+                    <i class="fas fa-couch logo-icon"></i>
+                    Гранд Мебель
+                </a>
                 <nav class="nav">
                     <ul class="nav-list">
-                        <li><a href="#hero">Главная</a></li>
-                        <li><a href="#catalog">Каталог</a></li>
-                        <li><a href="#contacts">Контакты</a></li>
+                        <li><a href="#hero" class="nav-link active">Главная</a></li>
+                        <li><a href="#advantages" class="nav-link">Преимущества</a></li>
+                        <li><a href="#catalog" class="nav-link">Каталог</a></li>
+                        <li><a href="#contacts" class="nav-link">Контакты</a></li>
+                        <li><a href="#feedback" class="nav-link">Заказать</a></li>
                     </ul>
                     <div class="menu-toggle">
                         <i class="fas fa-bars"></i>
@@ -31,21 +1410,29 @@
             </div>
         </div>
     </header>
-
-    <!-- Герой-секция -->
-    <section id="hero" class="hero">
+    
+    <!-- Герой-секция с параллаксом -->
+    <section id="hero" class="hero parallax-section">
+        <div class="parallax-bg hero-bg"></div>
         <div class="hero-overlay"></div>
+        <div class="floating-element shape-1"></div>
+        <div class="floating-element shape-2"></div>
         <div class="container">
             <div class="hero-content">
                 <h1 class="hero-title">Гранд Мебель — всё для вашего комфорта</h1>
-                <p class="hero-subtitle">Широкий ассортимент мебели для дома, квартиры и офиса в Нягани</p>
-                <a href="#catalog" class="btn btn-primary">Посмотреть каталог</a>
+                <p class="hero-subtitle">Широкий ассортимент мебели для дома, квартиры и офиса в Нягани. Мы создаем уют в каждом доме с 2010 года.</p>
+                <div class="hero-buttons">
+                    <a href="#catalog" class="btn btn-primary">Посмотреть каталог</a>
+                    <a href="#feedback" class="btn btn-secondary">Заказать консультацию</a>
+                </div>
             </div>
         </div>
     </section>
-
-    <!-- Преимущества -->
-    <section class="advantages">
+    
+    <!-- Преимущества с параллаксом -->
+    <section id="advantages" class="advantages parallax-section">
+        <div class="parallax-bg advantages-bg"></div>
+        <div class="floating-element shape-3"></div>
         <div class="container">
             <h2 class="section-title">Почему выбирают нас</h2>
             <div class="advantages-grid">
@@ -54,98 +1441,112 @@
                         <i class="fas fa-phone-alt"></i>
                     </div>
                     <h3 class="advantage-title">Бесплатная консультация</h3>
-                    <p class="advantage-text">Поможем подобрать мебель под ваш интерьер</p>
+                    <p class="advantage-text">Поможем подобрать мебель под ваш интерьер и бюджет. Профессиональный дизайнер бесплатно приедет к вам</p>
                 </div>
                 <div class="advantage-card">
                     <div class="advantage-icon">
                         <i class="fas fa-truck"></i>
                     </div>
                     <h3 class="advantage-title">Доставка по Нягани</h3>
-                    <p class="advantage-text">Аккуратно и в удобное для вас время</p>
+                    <p class="advantage-text">Аккуратная доставка в удобное для вас время. Бесплатная доставка при заказе от 30 000 рублей</p>
                 </div>
                 <div class="advantage-card">
                     <div class="advantage-icon">
                         <i class="fas fa-tools"></i>
                     </div>
                     <h3 class="advantage-title">Сборка на месте</h3>
-                    <p class="advantage-text">Профессиональная сборка нашими мастерами</p>
+                    <p class="advantage-text">Профессиональная сборка нашими мастерами. Гарантия на сборку 2 года</p>
                 </div>
                 <div class="advantage-card">
                     <div class="advantage-icon">
                         <i class="fas fa-check-circle"></i>
                     </div>
                     <h3 class="advantage-title">Гарантия качества</h3>
-                    <p class="advantage-text">На всю продукцию предоставляется гарантия</p>
+                    <p class="advantage-text">На всю продукцию предоставляется гарантия от 1 до 5 лет. Используем только экологичные материалы</p>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Каталог -->
-    <section id="catalog" class="catalog">
+    
+    <!-- Каталог с параллаксом -->
+    <section id="catalog" class="catalog parallax-section">
+        <div class="parallax-bg catalog-bg"></div>
         <div class="container">
             <h2 class="section-title">Категории мебели</h2>
             <div class="catalog-grid">
                 <div class="catalog-card">
-                    <div class="catalog-card-image" style="background-image: url('images/living-room.jpg');">
-                        <div class="catalog-card-overlay"></div>
-                        <div class="catalog-card-content">
-                            <h3 class="catalog-card-title">Гостиные</h3>
-                        </div>
+                    <div class="catalog-card-image" style="background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="catalog-card-overlay"></div>
+                    <div class="catalog-card-content">
+                        <h3 class="catalog-card-title">Гостиные</h3>
+                        <p>Диваны, кресла, стенки, ТВ-тумбы</p>
+                        <button class="catalog-card-btn" data-category="living-room">
+                            Посмотреть <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
-                    <button class="catalog-card-btn" data-category="living-room">Посмотреть примеры</button>
                 </div>
                 <div class="catalog-card">
-                    <div class="catalog-card-image" style="background-image: url('images/bedroom.jpg');">
-                        <div class="catalog-card-overlay"></div>
-                        <div class="catalog-card-content">
-                            <h3 class="catalog-card-title">Спальни</h3>
-                        </div>
+                    <div class="catalog-card-image" style="background-image: url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="catalog-card-overlay"></div>
+                    <div class="catalog-card-content">
+                        <h3 class="catalog-card-title">Спальни</h3>
+                        <p>Кровати, шкафы, комоды, тумбы</p>
+                        <button class="catalog-card-btn" data-category="bedroom">
+                            Посмотреть <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
-                    <button class="catalog-card-btn" data-category="bedroom">Посмотреть примеры</button>
                 </div>
                 <div class="catalog-card">
-                    <div class="catalog-card-image" style="background-image: url('images/kitchen.jpg');">
-                        <div class="catalog-card-overlay"></div>
-                        <div class="catalog-card-content">
-                            <h3 class="catalog-card-title">Кухни</h3>
-                        </div>
+                    <div class="catalog-card-image" style="background-image: url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="catalog-card-overlay"></div>
+                    <div class="catalog-card-content">
+                        <h3 class="catalog-card-title">Кухни</h3>
+                        <p>Кухонные гарнитуры, столы, стулья</p>
+                        <button class="catalog-card-btn" data-category="kitchen">
+                            Посмотреть <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
-                    <button class="catalog-card-btn" data-category="kitchen">Посмотреть примеры</button>
                 </div>
                 <div class="catalog-card">
-                    <div class="catalog-card-image" style="background-image: url('images/office.jpg');">
-                        <div class="catalog-card-overlay"></div>
-                        <div class="catalog-card-content">
-                            <h3 class="catalog-card-title">Офис</h3>
-                        </div>
+                    <div class="catalog-card-image" style="background-image: url('https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="catalog-card-overlay"></div>
+                    <div class="catalog-card-content">
+                        <h3 class="catalog-card-title">Офис</h3>
+                        <p>Офисные кресла, столы, шкафы</p>
+                        <button class="catalog-card-btn" data-category="office">
+                            Посмотреть <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
-                    <button class="catalog-card-btn" data-category="office">Посмотреть примеры</button>
                 </div>
                 <div class="catalog-card">
-                    <div class="catalog-card-image" style="background-image: url('images/kids-room.jpg');">
-                        <div class="catalog-card-overlay"></div>
-                        <div class="catalog-card-content">
-                            <h3 class="catalog-card-title">Детская</h3>
-                        </div>
+                    <div class="catalog-card-image" style="background-image: url('https://images.unsplash.com/photo-1564078516393-cf04bd966897?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="catalog-card-overlay"></div>
+                    <div class="catalog-card-content">
+                        <h3 class="catalog-card-title">Детская</h3>
+                        <p>Кровати, столы, шкафы, игровые зоны</p>
+                        <button class="catalog-card-btn" data-category="kids-room">
+                            Посмотреть <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
-                    <button class="catalog-card-btn" data-category="kids-room">Посмотреть примеры</button>
                 </div>
                 <div class="catalog-card">
-                    <div class="catalog-card-image" style="background-image: url('images/sofa.jpg');">
-                        <div class="catalog-card-overlay"></div>
-                        <div class="catalog-card-content">
-                            <h3 class="catalog-card-title">Мягкая мебель</h3>
-                        </div>
+                    <div class="catalog-card-image" style="background-image: url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="catalog-card-overlay"></div>
+                    <div class="catalog-card-content">
+                        <h3 class="catalog-card-title">Мягкая мебель</h3>
+                        <p>Диваны, кресла, пуфы, кровати с мягкой спинкой</p>
+                        <button class="catalog-card-btn" data-category="sofa">
+                            Посмотреть <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
-                    <button class="catalog-card-btn" data-category="sofa">Посмотреть примеры</button>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Контакты -->
-    <section id="contacts" class="contacts">
+    
+    <!-- Контакты с параллаксом -->
+    <section id="contacts" class="contacts parallax-section">
+        <div class="parallax-bg contacts-bg"></div>
         <div class="container">
             <h2 class="section-title">Приходите к нам</h2>
             <div class="contacts-content">
@@ -155,6 +1556,7 @@
                         <div>
                             <h3>Адрес</h3>
                             <p>ул. Чернышова, 5Г, Нягань, ХМАО</p>
+                            <p>Торговый комплекс "Мебельград", 2 этаж</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -162,6 +1564,7 @@
                         <div>
                             <h3>Телефон</h3>
                             <p>+7 (982) 415-77-75</p>
+                            <p>+7 (34672) 5-55-55 (офис)</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -172,60 +1575,61 @@
                             <p>Сб-Вс: 10:00 - 17:00</p>
                         </div>
                     </div>
-                    <a href="tel:+79824157775" class="btn btn-primary contact-btn">Позвонить</a>
+                    <a href="tel:+79824157775" class="btn btn-primary contact-btn">Позвонить сейчас</a>
                 </div>
                 <div class="contacts-map">
-                    <h3>Мы на карте</h3>
                     <div class="map-container">
-                        <!-- Карта будет добавлена через JS -->
-                        <div id="map-placeholder">
-                            <div class="map-fallback">
-                                <p><i class="fas fa-map-marked-alt"></i></p>
-                                <p>ул. Чернышова, 5Г, Нягань, ХМАО</p>
-                                <p>Для навигации используйте Яндекс.Карты или Google Maps</p>
+                        <div class="map-content">
+                            <div class="map-icon">
+                                <i class="fas fa-map-marked-alt"></i>
                             </div>
+                            <h3 class="map-title">Мы на карте</h3>
+                            <p class="map-address">ул. Чернышова, 5Г, Нягань</p>
+                            <p>Торговый комплекс "Мебельград"</p>
+                            <p class="map-note">Для навигации используйте Яндекс.Карты или Google Maps</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Форма обратной связи -->
-    <section class="feedback">
+    
+    <!-- Форма обратной связи с параллаксом -->
+    <section id="feedback" class="feedback parallax-section">
+        <div class="parallax-bg feedback-bg"></div>
         <div class="container">
             <div class="feedback-content">
                 <div class="feedback-info">
                     <h2 class="section-title">Остались вопросы? Закажите звонок</h2>
-                    <p>Наши специалисты свяжутся с вами в течение 30 минут и ответят на все вопросы</p>
+                    <p>Наши специалисты свяжутся с вами в течение 30 минут и ответят на все вопросы. Подберём оптимальные варианты под ваш бюджет и предпочтения.</p>
                 </div>
                 <form id="feedback-form" class="feedback-form">
                     <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+                        <input type="text" id="name" name="name" placeholder=" " required>
+                        <label for="name" class="form-label">Ваше имя</label>
                     </div>
                     <div class="form-group">
-                        <input type="tel" id="phone" name="phone" placeholder="Ваш телефон" required>
+                        <input type="tel" id="phone" name="phone" placeholder=" " required>
+                        <label for="phone" class="form-label">Ваш телефон</label>
                     </div>
                     <div class="form-group">
-                        <textarea id="message" name="message" placeholder="Что вас интересует? (например, кухонный гарнитур, диван, офисный стол)" rows="3"></textarea>
+                        <textarea id="message" name="message" placeholder=" " rows="4"></textarea>
+                        <label for="message" class="form-label">Что вас интересует?</label>
                     </div>
                     <button type="submit" class="btn btn-primary">Заказать консультацию</button>
                 </form>
             </div>
         </div>
     </section>
-
-    <!-- Футер -->
-    <footer class="footer">
+    
+    <!-- Футер с параллаксом -->
+    <footer class="footer parallax-section">
+        <div class="parallax-bg footer-bg"></div>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <p class="copyright">© Гранд Мебель, Нягань, 2024</p>
-                </div>
-                <div class="footer-column">
-                    <a href="tel:+79824157775" class="footer-phone">+7 (982) 415-77-75</a>
-                </div>
-                <div class="footer-column">
+                    <a href="#" class="footer-logo">Гранд Мебель</a>
+                    <p class="footer-about">Создаём уют в вашем доме с 2010 года. Широкий ассортимент мебели для дома, квартиры и офиса в Нягани.</p>
                     <div class="social-links">
                         <a href="#" class="social-link" aria-label="Instagram">
                             <i class="fab fa-instagram"></i>
@@ -236,15 +1640,52 @@
                         <a href="#" class="social-link" aria-label="WhatsApp">
                             <i class="fab fa-whatsapp"></i>
                         </a>
+                        <a href="#" class="social-link" aria-label="Telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Каталог</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Гостиные</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Спальни</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Кухни</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Офис</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Детская</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Контакты</h3>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="footer-contact-text">
+                            <p>ул. Чернышова, 5Г</p>
+                            <p>Нягань, ХМАО</p>
+                        </div>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div class="footer-contact-text">
+                            <p>+7 (982) 415-77-75</p>
+                            <p>+7 (34672) 5-55-55</p>
+                        </div>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="footer-contact-text">
+                            <p>info@grand-mebel-nyagan.ru</p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>г. Нягань, ул. Чернышова, 5Г</p>
+                <p>© Гранд Мебель, Нягань, 2024. Все права защищены.</p>
+                <p>г. Нягань, ул. Чернышова, 5Г, ТК "Мебельград"</p>
             </div>
         </div>
     </footer>
-
+    
     <!-- Модальное окно для галереи -->
     <div id="gallery-modal" class="modal">
         <div class="modal-content">
@@ -262,17 +1703,346 @@
             </div>
         </div>
     </div>
-
+    
     <!-- Сообщение об успешной отправке формы -->
     <div id="success-message" class="success-message">
         <div class="success-content">
             <i class="fas fa-check-circle"></i>
             <h3>Спасибо! Мы скоро вам перезвоним</h3>
-            <p>Наш менеджер свяжется с вами в ближайшее время</p>
+            <p>Наш менеджер свяжется с вами в ближайшее время для уточнения деталей и ответит на все ваши вопросы.</p>
             <button class="btn btn-primary" id="close-success">Хорошо</button>
         </div>
     </div>
-
-    <script src="js/script.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Мобильное меню
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navList = document.querySelector('.nav-list');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function() {
+                    navList.classList.toggle('active');
+                    this.querySelector('i').classList.toggle('fa-bars');
+                    this.querySelector('i').classList.toggle('fa-times');
+                });
+            }
+            
+            // Закрытие меню при клике на ссылку
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (navList.classList.contains('active')) {
+                        navList.classList.remove('active');
+                        menuToggle.querySelector('i').classList.remove('fa-times');
+                        menuToggle.querySelector('i').classList.add('fa-bars');
+                    }
+                    
+                    // Обновление активного пункта меню
+                    navLinks.forEach(item => item.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Изменение шапки при скролле
+            const header = document.querySelector('.header');
+            const scrollProgress = document.querySelector('.scroll-progress');
+            
+            window.addEventListener('scroll', function() {
+                // Эффект шапки
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                
+                // Прогресс бар
+                const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrolled = (window.scrollY / windowHeight) * 100;
+                scrollProgress.style.width = scrolled + '%';
+                
+                // Активация элементов при скролле
+                activateElementsOnScroll();
+            });
+            
+            // Параллакс эффект
+            function initParallax() {
+                const parallaxElements = document.querySelectorAll('.parallax-bg');
+                
+                window.addEventListener('scroll', function() {
+                    const scrollY = window.scrollY;
+                    
+                    parallaxElements.forEach(element => {
+                        const speed = 0.3;
+                        const yPos = -(scrollY * speed);
+                        element.style.transform = `translate3d(0, ${yPos}px, 0) scale(1.1)`;
+                    });
+                });
+            }
+            
+            initParallax();
+            
+            // Активация элементов при скролле
+            function activateElementsOnScroll() {
+                const elements = document.querySelectorAll('.advantage-card, .catalog-card, .contact-item, .contact-btn, .contacts-map, .feedback-info, .feedback-form');
+                
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            }
+            
+            // Активируем элементы при загрузке
+            setTimeout(activateElementsOnScroll, 500);
+            
+            // Данные для галереи
+            const galleryData = {
+                'living-room': {
+                    title: 'Гостиные',
+                    images: [
+                        'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                    ]
+                },
+                'bedroom': {
+                    title: 'Спальни',
+                    images: [
+                        'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1571508601891-ca5e7a713859?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1525915831070-bd5cdcd422d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1540518614846-7eded433c457?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                    ]
+                },
+                'kitchen': {
+                    title: 'Кухни',
+                    images: [
+                        'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1484101403633-562f891dc89a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1565538810643-b5bdb714032a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1584799580661-53b7c6b99430?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1611270688594-db8b0f797d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1594223274512-ad4803739b7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                    ]
+                },
+                'office': {
+                    title: 'Офисная мебель',
+                    images: [
+                        'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1581299329814-556ec7cc099e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1604328698692-f76ea9498e76?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                    ]
+                },
+                'kids-room': {
+                    title: 'Детские комнаты',
+                    images: [
+                        'https://images.unsplash.com/photo-1564078516393-cf04bd966897?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1595576508898-0ad5c879a061?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1596496181871-9689e156ea6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1603969072881-b0fc7f3d77d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                    ]
+                },
+                'sofa': {
+                    title: 'Мягкая мебель',
+                    images: [
+                        'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1540574163026-643ea20ade25?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1567016432779-094069958ea5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1592078615290-033ee584e267?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                    ]
+                }
+            };
+            
+            // Открытие модального окна галереи
+            const catalogButtons = document.querySelectorAll('.catalog-card-btn');
+            const modal = document.getElementById('gallery-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const galleryGrid = document.getElementById('gallery-grid');
+            const modalClose = document.querySelector('.modal-close');
+            const modalConsultBtn = document.getElementById('modal-consult-btn');
+            
+            catalogButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    const data = galleryData[category];
+                    
+                    if (data) {
+                        modalTitle.textContent = data.title;
+                        galleryGrid.innerHTML = '';
+                        
+                        data.images.forEach(imageUrl => {
+                            const galleryItem = document.createElement('div');
+                            galleryItem.className = 'gallery-item';
+                            galleryItem.style.backgroundImage = `url('${imageUrl}')`;
+                            
+                            const overlay = document.createElement('div');
+                            overlay.className = 'gallery-item-overlay';
+                            overlay.innerHTML = '<i class="fas fa-search-plus"></i>';
+                            galleryItem.appendChild(overlay);
+                            
+                            galleryGrid.appendChild(galleryItem);
+                        });
+                        
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+            
+            // Закрытие модального окна
+            if (modalClose) {
+                modalClose.addEventListener('click', function() {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+            
+            // Закрытие модального окна при клике вне его
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Кнопка "Заказать консультацию" в модальном окне
+            if (modalConsultBtn) {
+                modalConsultBtn.addEventListener('click', function() {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    
+                    // Прокрутка к форме обратной связи
+                    document.querySelector('#feedback-form').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            }
+            
+            // Форма обратной связи
+            const feedbackForm = document.getElementById('feedback-form');
+            const successMessage = document.getElementById('success-message');
+            const closeSuccessBtn = document.getElementById('close-success');
+            
+            if (feedbackForm) {
+                feedbackForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Получение данных формы
+                    const formData = {
+                        name: document.getElementById('name').value,
+                        phone: document.getElementById('phone').value,
+                        message: document.getElementById('message').value,
+                        date: new Date().toLocaleString()
+                    };
+                    
+                    // В реальном приложении здесь был бы AJAX запрос к серверу
+                    console.log('Форма отправлена:', formData);
+                    
+                    // Очистка формы
+                    feedbackForm.reset();
+                    
+                    // Сброс плавающих лейблов
+                    const labels = document.querySelectorAll('.form-label');
+                    labels.forEach(label => {
+                        label.style.top = '18px';
+                        label.style.fontSize = '16px';
+                        label.style.color = 'var(--color-text-light)';
+                    });
+                    
+                    // Показ сообщения об успехе
+                    successMessage.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+            
+            // Закрытие сообщения об успехе
+            if (closeSuccessBtn) {
+                closeSuccessBtn.addEventListener('click', function() {
+                    successMessage.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+            
+            // Закрытие сообщения при клике вне его
+            if (successMessage) {
+                successMessage.addEventListener('click', function(e) {
+                    if (e.target === successMessage) {
+                        successMessage.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+            
+            // Плавающие лейблы формы
+            const formInputs = document.querySelectorAll('.form-group input, .form-group textarea');
+            
+            formInputs.forEach(input => {
+                const label = input.nextElementSibling;
+                
+                input.addEventListener('focus', function() {
+                    label.style.top = '-10px';
+                    label.style.fontSize = '14px';
+                    label.style.color = 'var(--color-primary)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    if (!this.value) {
+                        label.style.top = '18px';
+                        label.style.fontSize = '16px';
+                        label.style.color = 'var(--color-text-light)';
+                    }
+                });
+                
+                // Проверка при загрузке страницы
+                if (input.value) {
+                    label.style.top = '-10px';
+                    label.style.fontSize = '14px';
+                    label.style.color = 'var(--color-primary)';
+                }
+            });
+            
+            // Плавная прокрутка для всех якорных ссылок
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Инициализация карты (заглушка)
+            const initMap = () => {
+                console.log('Карта инициализирована. В реальном проекте здесь будет код для Яндекс.Карт или Google Maps.');
+            };
+            
+            // Вызов функции инициализации карты
+            initMap();
+        });
+    </script>
 </body>
 </html>
