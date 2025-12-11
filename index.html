@@ -430,7 +430,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('images/vhod_grup.png');
+            background-image: url('images/vhod_grup3.png');
             background-size: contain;
             background-position: right center;
             background-repeat: no-repeat;
@@ -1106,59 +1106,38 @@
         .map-container {
             height: 100%;
             width: 100%;
-            background-color: #f0e2d0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 40px;
             position: relative;
-            overflow: hidden;
         }
         
-        .map-container::before {
-            content: '';
+        .map-frame {
+            height: 100%;
+            width: 100%;
+            border: none;
+        }
+        
+        .map-overlay {
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(160, 82, 45, 0.05) 0%, rgba(245, 231, 216, 0.3) 100%);
-            z-index: 1;
-        }
-        
-        .map-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .map-icon {
-            font-size: 70px;
-            color: var(--color-primary);
-            margin-bottom: 25px;
-            opacity: 0.8;
-        }
-        
-        .map-title {
-            font-family: var(--font-secondary);
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--color-text);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            text-align: center;
+            z-index: 10;
+            border-top: 3px solid var(--color-primary);
         }
         
         .map-address {
-            font-size: 19px;
+            font-size: 18px;
             color: var(--color-text);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             line-height: 1.5;
         }
         
         .map-note {
             font-size: 16px;
             color: var(--color-text-light);
-            margin-top: 25px;
+            margin-top: 10px;
             opacity: 0.8;
         }
         
@@ -1289,13 +1268,14 @@
             text-align: center;
         }
         
-        /* Футер */
+        /* Футер - СВЕТЛЫЙ */
         .footer {
-            background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
-            color: white;
+            background-color: var(--color-background);
+            color: var(--color-text);
             padding: 80px 0 30px;
             position: relative;
             overflow: hidden;
+            border-top: 1px solid var(--color-border);
         }
         
         .footer::before {
@@ -1307,7 +1287,7 @@
             height: 100%;
             background-image: url('images/pattern-light.png');
             background-size: 300px;
-            opacity: 0.05;
+            opacity: 0.03;
             z-index: 1;
         }
         
@@ -1360,7 +1340,7 @@
         }
         
         .footer-about {
-            opacity: 0.9;
+            color: var(--color-text-light);
             font-size: 16px;
             line-height: 1.7;
             margin-bottom: 25px;
@@ -1377,17 +1357,17 @@
             justify-content: center;
             width: 46px;
             height: 46px;
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(160, 82, 45, 0.1);
             border-radius: var(--radius-full);
-            color: white;
+            color: var(--color-primary);
             font-size: 18px;
             text-decoration: none;
             transition: var(--transition);
         }
         
         .social-link:hover {
-            background-color: white;
-            color: var(--color-primary);
+            background-color: var(--color-primary);
+            color: white;
             transform: translateY(-3px);
         }
         
@@ -1396,7 +1376,7 @@
             font-size: 20px;
             font-weight: 600;
             margin-bottom: 25px;
-            color: white;
+            color: var(--color-text);
             position: relative;
             padding-bottom: 15px;
         }
@@ -1408,7 +1388,7 @@
             left: 0;
             width: 40px;
             height: 3px;
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: var(--color-primary);
             border-radius: 2px;
         }
         
@@ -1428,7 +1408,7 @@
         }
         
         .footer-links a {
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--color-text-light);
             text-decoration: none;
             transition: var(--transition);
             display: flex;
@@ -1443,7 +1423,7 @@
         }
         
         .footer-links a:hover {
-            color: white;
+            color: var(--color-primary);
             transform: translateX(5px);
         }
         
@@ -1465,35 +1445,52 @@
         }
         
         .footer-contact-item i {
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--color-primary);
             font-size: 18px;
             margin-top: 3px;
             flex-shrink: 0;
         }
         
         .footer-contact-text {
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--color-text-light);
             line-height: 1.6;
         }
         
         .footer-contact-text a {
-            color: white;
+            color: var(--color-primary);
             text-decoration: none;
             transition: var(--transition);
         }
         
         .footer-contact-text a:hover {
-            color: var(--color-secondary);
+            color: var(--color-primary-dark);
         }
         
         .footer-bottom {
             padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid var(--color-border);
             text-align: center;
             font-size: 15px;
-            opacity: 0.8;
+            color: var(--color-text-light);
             position: relative;
             z-index: 2;
+        }
+        
+        .footer-creator {
+            margin-top: 15px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .footer-creator a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-creator a:hover {
+            color: var(--color-primary-dark);
+            text-decoration: underline;
         }
         
         /* Анимации */
@@ -1955,7 +1952,7 @@
                         <div class="contact-item-content">
                             <h3>Адрес магазина</h3>
                             <p>ул. Чернышова, 5Г, Нягань, ХМАО<br>
-                            Торговый комплекс "Мебельград", 2 этаж</p>
+                            Торговый комплекс "<strong>Гранд Мебель</strong>", 2 этаж</p>
                         </div>
                     </div>
                     
@@ -1986,14 +1983,15 @@
                 
                 <div class="contacts-map">
                     <div class="map-container">
-                        <div class="map-content">
-                            <div class="map-icon">
-                                <i class="fas fa-map-marked-alt"></i>
-                            </div>
-                            <h3 class="map-title">Мы на карте</h3>
-                            <p class="map-address">ул. Чернышова, 5Г<br>г. Нягань, ХМАО</p>
-                            <p>Торговый комплекс "Мебельград"<br>2 этаж, отдел «Гранд Мебель»</p>
-                            <p class="map-note">Для навигации используйте Яндекс.Карты или Google Maps</p>
+                        <iframe 
+                            src="https://yandex.ru/map-widget/v1/?ll=65.389597%2C62.139476&z=16&pt=65.389597%2C62.139476%2Cpm2rdm"
+                            class="map-frame" 
+                            allowfullscreen>
+                        </iframe>
+                        <div class="map-overlay">
+                            <p class="map-address">ул. Чернышова, 5Г, г. Нягань, ХМАО</p>
+                            <p>Торговый комплекс "<strong>Гранд Мебель</strong>"<br>2 этаж, отдел «Гранд Мебель»</p>
+                            <p class="map-note">Для навигации используйте Яндекс.Карты</p>
                         </div>
                     </div>
                 </div>
@@ -2104,7 +2102,8 @@
                         <i class="fas fa-map-marker-alt"></i>
                         <div class="footer-contact-text">
                             ул. Чернышова, 5Г<br>
-                            Нягань, ХМАО
+                            Нягань, ХМАО<br>
+                            Торговый комплекс "<strong>Гранд Мебель</strong>"
                         </div>
                     </div>
                     <div class="footer-contact-item">
@@ -2125,7 +2124,10 @@
             
             <div class="footer-bottom">
                 <p>© 2010-2024 Гранд Мебель, Нягань. Все права защищены.</p>
-                <p>г. Нягань, ул. Чернышова, 5Г, ТК "Мебельград"</p>
+                <p>г. Нягань, ул. Чернышова, 5Г, ТК "Гранд Мебель"</p>
+                <div class="footer-creator">
+                    Сайт создан в студии дизайна <a href="https://nyaganmaksimov-sys.github.io/studio-dizaina/" target="_blank">Павла Максимова DizMax</a>
+                </div>
             </div>
         </div>
     </footer>
@@ -2280,9 +2282,9 @@
             
             // Проверка основного баннера
             const heroSection = document.querySelector('.hero');
-            checkImageAvailability('images/vhod_grup.png', (exists) => {
+            checkImageAvailability('images/vhod_grup3.png', (exists) => {
                 if (!exists) {
-                    console.log('Основной баннер images/vhod_grup2.png не найден');
+                    console.log('Основной баннер images/vhod_grup3.png не найден');
                     heroSection.style.background = 'linear-gradient(135deg, var(--color-background) 0%, #fcf3e9 100%)';
                     heroSection.style.backgroundImage = 'none';
                 }
